@@ -26,3 +26,7 @@ class User(AbstractUser):
         choices=Role.choices,
         default=Role.MEMBER,
     )
+
+    def __str__(self):
+        return f"{self.full_name} ({self.email})"
+    
