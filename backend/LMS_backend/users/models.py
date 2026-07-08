@@ -11,3 +11,13 @@ class User(AbstractUser):
         max_length=150
     )
 
+    phone_number = models.CharField(
+        max_length=15,
+        blank=True # making the field isn't mandatory
+    )
+
+    role = models.CharField(
+        max_length=20,
+        choices=Role.choices,
+        default=Role.MEMBER,
+    )
