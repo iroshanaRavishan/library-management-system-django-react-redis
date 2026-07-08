@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
+    # Custom User model.
+    # extend Django's AbstractUser so that it can add the own fields while
+    # keeping Django's built-in authentication system.
 
     class Role(models.TextChoices):
         LIBRARIAN = "LIBRARIAN", "Librarian"
