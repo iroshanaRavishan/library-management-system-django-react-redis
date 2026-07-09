@@ -16,7 +16,14 @@ class CustomUserAdmin(UserAdmin):
         "is_staff",
         "is_active",
     )
-    
+
+    # Filters shown in the right sidebar of Django Admin.
+    list_filter = (
+        "role",
+        "is_staff",
+        "is_active",
+    )
+
     # Fields used when searching from the Django Admin search box.
     search_fields = (
         "username",
