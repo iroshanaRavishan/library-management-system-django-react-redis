@@ -33,3 +33,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             "phone_number",
             "role",
         )
+
+    def validate_password(self, value):
+        return make_password(value)
