@@ -10,3 +10,11 @@ class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+
+
+class UserDetailView(generics.RetrieveAPIView):
+    # Retrieve a single user.
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer 
+    permission_classes = [IsAuthenticated] # Only logged-in users can access this API.
