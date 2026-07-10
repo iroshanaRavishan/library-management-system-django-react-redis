@@ -16,3 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
             "phone_number",
             "role",
         )
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    # Used when registering a new user
+
+    password = serializers.CharField(write_only=True)
