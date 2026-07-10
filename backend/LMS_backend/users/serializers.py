@@ -22,3 +22,14 @@ class RegisterSerializer(serializers.ModelSerializer):
     # Used when registering a new user
 
     password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = (
+            "username",
+            "email",
+            "password",
+            "full_name",
+            "phone_number",
+            "role",
+        )
