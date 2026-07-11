@@ -4,3 +4,7 @@ from .views import (
     UserListView,
     UserDetailView,
 )
+
+urlpatterns = [
+    path("", UserListView.as_view(), name="user-list")
+]
