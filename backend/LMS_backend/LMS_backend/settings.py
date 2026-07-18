@@ -132,6 +132,7 @@ REST_FRAMEWORK = {
 
 AUTHENTICATION_BACKENDS = [
     "users.authentication.EmailBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 CORS_ALLOWED_ORIGINS = [
