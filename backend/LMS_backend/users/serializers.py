@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate
 
 from .models import User
 
-class UserSerializer(serializers.ModelSerializer):
-    # Used for reading user information
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    # Serializer used for reading user information
 
     class Meta:
         model = User
