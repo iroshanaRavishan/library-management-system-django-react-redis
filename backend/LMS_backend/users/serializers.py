@@ -5,11 +5,12 @@ from django.contrib.auth import authenticate
 from .models import User
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    # Serializer used for reading user information
+    # Serializer used for returning user information.
 
     class Meta:
         model = User
-        fields = (
+        fields = [
+            "url",
             "id",
             "username",
             "email",
