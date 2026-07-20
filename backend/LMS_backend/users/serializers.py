@@ -51,3 +51,6 @@ class LoginSerializer(serializers.Serializer):
     # Serializer used to validate login credentials.
 
     email = serializers.EmailField()
+    password = serializers.CharField(
+        write_only=True
+    )
