@@ -27,20 +27,20 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    # Used when registering a new user
+    # Serializer responsible for creating a new user.
 
     password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = (
+        fields = [
             "username",
             "email",
             "password",
             "full_name",
             "phone_number",
             "role",
-        )
+        ]
 
     def validate_password(self, value):
         return make_password(value)
