@@ -43,4 +43,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         ]
 
     def validate_password(self, value):
+        # Hash the password before saving it.
         return make_password(value)
+    
+
+class LoginSerializer(serializers.Serializer):
+    # Serializer used to validate login credentials.
+
+    email = serializers.EmailField()
