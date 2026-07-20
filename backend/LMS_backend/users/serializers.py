@@ -17,7 +17,13 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "full_name",
             "phone_number",
             "role",
-        )
+        ]
+
+        extra_kwargs = {
+            "url": {
+                "view_name": "user-detail"
+            }
+        }
 
 
 class RegisterSerializer(serializers.ModelSerializer):
