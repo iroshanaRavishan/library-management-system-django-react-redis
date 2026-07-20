@@ -54,3 +54,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(
         write_only=True
     )
+
+    def validate(self, attrs):
+
+        email = attrs.get("email")
