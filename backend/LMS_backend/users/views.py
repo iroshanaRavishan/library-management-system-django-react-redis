@@ -26,3 +26,4 @@ class RegisterView(generics.CreateAPIView):
     # Register a new user.
 
     serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
