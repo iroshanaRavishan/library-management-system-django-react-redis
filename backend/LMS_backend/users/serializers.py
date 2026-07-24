@@ -64,3 +64,5 @@ class LoginSerializer(serializers.Serializer):
             username=email,
             password=password
         )
+
+        return attrs
