@@ -60,3 +60,7 @@ class LoginSerializer(serializers.Serializer):
 
         email = attrs.get("email")
         password = attrs.get("password")
+        user = authenticate(
+            username=email,
+            password=password
+        )
