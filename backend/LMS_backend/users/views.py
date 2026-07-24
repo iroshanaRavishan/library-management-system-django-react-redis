@@ -24,3 +24,5 @@ class UserDetailView(generics.RetrieveAPIView):
 
 class RegisterView(generics.CreateAPIView):
     # Register a new user.
+
+    serializer_class = RegisterSerializer
