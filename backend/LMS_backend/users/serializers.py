@@ -70,4 +70,6 @@ class LoginSerializer(serializers.Serializer):
                 "Invalid email or password."
             )
 
+        attrs["user"] = user
+
         return attrs
