@@ -45,4 +45,5 @@ class RegisterView(generics.CreateAPIView):
 
 class LoginView(APIView):
     # Authenticate user and return JWT tokens.
-    
+
+    permission_classes = [AllowAny]
