@@ -40,3 +40,9 @@ class RegisterView(generics.CreateAPIView):
 
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+
+
+
+class LoginView(APIView):
+    # Authenticate user and return JWT tokens.
+    
