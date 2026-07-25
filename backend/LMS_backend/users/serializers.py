@@ -65,4 +65,9 @@ class LoginSerializer(serializers.Serializer):
             password=password
         )
 
+        if not user:
+            raise serializers.ValidationError(
+                "Invalid email or password."
+            )
+
         return attrs
