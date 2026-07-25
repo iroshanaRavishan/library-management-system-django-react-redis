@@ -2,7 +2,11 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import (
+    UserSerializer,
+    RegisterSerializer,
+    LoginSerializer,
+)
 
 class UserListView(generics.ListAPIView):
     # List all users.
