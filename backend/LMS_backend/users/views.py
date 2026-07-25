@@ -8,6 +8,9 @@ from .serializers import (
     LoginSerializer,
 )
 
+from rest_framework import generics
+
+
 class UserListView(generics.ListAPIView):
     # List all users.
 
