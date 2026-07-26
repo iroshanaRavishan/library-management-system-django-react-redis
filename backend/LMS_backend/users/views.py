@@ -63,7 +63,7 @@ class LoginView(APIView):
             "user": UserSerializer(
                 user,
                 context={"request": request}
-            ),
+            ).data,
             "access": str(refresh.access_token),
             "refresh": str(refresh)
 
