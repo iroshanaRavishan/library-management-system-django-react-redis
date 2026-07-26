@@ -47,3 +47,6 @@ class LoginView(APIView):
     # Authenticate user and return JWT tokens.
 
     permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer()
