@@ -61,4 +61,4 @@ class LoginView(APIView):
 
         return Response({
             "refresh": str(refresh)
-        })
+        }, status=status.HTTP_200_OK)
