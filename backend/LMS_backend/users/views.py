@@ -75,6 +75,10 @@ class ProfileView(APIView):
     # Return logged-in user's profile.
 
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request):
+        serializer = UserSerializer(
+            request.user,
+        )
+
         return Response(status=status.HTTP_200_OK)
