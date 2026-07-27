@@ -82,4 +82,4 @@ class ProfileView(APIView):
             context={"request":request}
         )
 
-        return Response(status=status.HTTP_200_OK)
+        return Response(serializer.data)
