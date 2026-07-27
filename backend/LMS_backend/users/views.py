@@ -68,3 +68,8 @@ class LoginView(APIView):
             "refresh": str(refresh)
 
         }, status=status.HTTP_200_OK)
+    
+
+
+class ProfileView(APIView):
+    # Return logged-in user's profile.
