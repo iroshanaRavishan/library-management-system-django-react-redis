@@ -79,6 +79,7 @@ class ProfileView(APIView):
     def get(self, request):
         serializer = UserSerializer(
             request.user,
+            context={"request":request}
         )
 
         return Response(status=status.HTTP_200_OK)
