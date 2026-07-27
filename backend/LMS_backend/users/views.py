@@ -73,3 +73,5 @@ class LoginView(APIView):
 
 class ProfileView(APIView):
     # Return logged-in user's profile.
+
+    permission_classes = [IsAuthenticated]
