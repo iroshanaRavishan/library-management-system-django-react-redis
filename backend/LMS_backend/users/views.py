@@ -1,8 +1,21 @@
-from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import (
+    UserSerializer,
+    RegisterSerializer,
+    LoginSerializer,
+)
+
+from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import (
+    IsAuthenticated,
+    AllowAny,
+)
+from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 class UserListView(generics.ListAPIView):
     # List all users.
@@ -12,9 +25,61 @@ class UserListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
 
+
 class UserDetailView(generics.RetrieveAPIView):
     # Retrieve a single user.
 
     queryset = User.objects.all()
     serializer_class = UserSerializer 
     permission_classes = [IsAuthenticated] # Only logged-in users can access this API.
+
+
+
+class RegisterView(generics.CreateAPIView):
+    # Register a new user.
+
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
+
+
+
+class LoginView(APIView):
+    # Authenticate user and return JWT tokens.
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer(
+            data=request.data
+        )
+        serializer.is_valid(
+            raise_exception=True
+        )
+
+        user = serializer.validated_data["user"]
+        refresh = RefreshToken.for_user(user)
+
+        return Response({
+            "user": UserSerializer(
+                user,
+                context={"request": request}
+            ).data,
+            "access": str(refresh.access_token),
+            "refresh": str(refresh)
+
+        }, status=status.HTTP_200_OK)
+    
+
+
+class ProfileView(APIView):
+    # Return logged-in user's profile.
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(
+            request.user,
+            context={"request":request}
+        )
+
+        return Response(serializer.data)
