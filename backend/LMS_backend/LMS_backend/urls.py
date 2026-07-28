@@ -24,4 +24,7 @@ urlpatterns = [
 
     # Users App
     path("users/", include("users.urls")),
+
+     # JWT Refresh Endpoint
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
