@@ -9,3 +9,23 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Category(models.Model):
+    #Stores book categories.
+
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Publisher(models.Model):
+    # Stores publisher information.
+
+    name = models.CharField(max_length=150, unique=True)
+    address = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.name
