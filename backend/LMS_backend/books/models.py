@@ -19,3 +19,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Publisher(models.Model):
+    # Stores publisher information.
+
+    name = models.CharField(max_length=150, unique=True)
