@@ -5,4 +5,5 @@ class Author(models.Model):
     #Stores book author information.
 
     name = models.CharField(max_length=150, unique=True)
+    biography = models.TextField(blank=True)
 
