@@ -25,3 +25,4 @@ class Publisher(models.Model):
     # Stores publisher information.
 
     name = models.CharField(max_length=150, unique=True)
+    address = models.CharField(max_length=255, blank=True)
