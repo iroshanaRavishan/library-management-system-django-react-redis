@@ -7,3 +7,5 @@ class Author(models.Model):
     name = models.CharField(max_length=150, unique=True)
     biography = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.name
