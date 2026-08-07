@@ -50,5 +50,9 @@ class Book(models.Model):
         related_name="books",
     )
 
+
+    total_copies = models.PositiveIntegerField(default=1)
+
+
     def __str__(self):
         return self.title
