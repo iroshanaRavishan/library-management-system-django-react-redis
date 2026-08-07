@@ -40,4 +40,5 @@ class Book(models.Model):
 
     author = models.ForeignKey(
         Author,
+        on_delete=models.CASCADE,
     )
