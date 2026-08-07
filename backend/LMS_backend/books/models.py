@@ -53,6 +53,7 @@ class Book(models.Model):
 
     total_copies = models.PositiveIntegerField(default=1)
 
+    available_copies = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.title
