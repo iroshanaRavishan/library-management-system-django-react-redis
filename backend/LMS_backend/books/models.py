@@ -43,3 +43,8 @@ class Book(models.Model):
         on_delete=models.CASCADE,
         related_name="books",
     )
+
+    category = models.ForeignKey(
+        Category,
+        related_name="books",
+    )
