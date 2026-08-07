@@ -55,5 +55,9 @@ class Book(models.Model):
 
     available_copies = models.PositiveIntegerField(default=1)
 
+    description = models.TextField(blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.title
