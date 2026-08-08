@@ -53,6 +53,7 @@ class Book(models.Model):
     publisher = models.ForeignKey(
         Publisher,
         on_delete=models.CASCADE,
+        related_name="books",
     )
 
     publication_year = models.PositiveIntegerField()
