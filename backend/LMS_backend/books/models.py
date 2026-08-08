@@ -29,3 +29,44 @@ class Publisher(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Book(models.Model):
+    # Stores book information.
+
+    isbn = models.CharField(max_length=20, unique=True)
+
+    title = models.CharField(max_length=255)
+
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        related_name="books",
+    )
+
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name="books",
+    )
+
+    publisher = models.ForeignKey(
+        Publisher,
+        on_delete=models.CASCADE,
+        related_name="books",
+    )
+
+    publication_year = models.PositiveIntegerField()
+
+    total_copies = models.PositiveIntegerField(default=1)
+
+    available_copies = models.PositiveIntegerField(default=1)
+
+    description = models.TextField(blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
