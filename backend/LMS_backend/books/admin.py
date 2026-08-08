@@ -14,3 +14,9 @@ class AuthorAdmin(admin.ModelAdmin):
     search_fields = (
         "name",
     )
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    # Displays the Category model in the Django admin interface.
+
