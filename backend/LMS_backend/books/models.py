@@ -54,6 +54,7 @@ class Book(models.Model):
         Publisher,
     )
 
+    publication_year = models.PositiveIntegerField()
 
     total_copies = models.PositiveIntegerField(default=1)
 
