@@ -11,3 +11,6 @@ class AuthorAdmin(admin.ModelAdmin):
         "name",
     )
 
+    search_fields = (
+        "name",
+    )
