@@ -50,6 +50,10 @@ class Book(models.Model):
         related_name="books",
     )
 
+    publisher = models.ForeignKey(
+        Publisher,
+    )
+
 
     total_copies = models.PositiveIntegerField(default=1)
 
