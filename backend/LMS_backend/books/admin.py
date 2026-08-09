@@ -24,3 +24,7 @@ class CategoryAdmin(admin.ModelAdmin):
         "id",
         "name",
     )
+
+    search_fields = (
+        "name",
+    )
