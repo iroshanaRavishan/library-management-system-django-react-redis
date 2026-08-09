@@ -28,3 +28,8 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = (
         "name",
     )
+
+
+@admin.register(Publisher)
+class PublisherAdmin(admin.ModelAdmin):
+    # Displays the Publisher model in the Django admin interface.
