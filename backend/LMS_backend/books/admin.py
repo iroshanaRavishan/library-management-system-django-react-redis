@@ -22,4 +22,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
     list_display = (
         "id",
+        "name",
     )
