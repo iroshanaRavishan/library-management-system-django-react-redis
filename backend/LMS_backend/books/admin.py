@@ -33,3 +33,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
     # Displays the Publisher model in the Django admin interface.
+
+    list_display = (
+        "name",
+    )
