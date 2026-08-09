@@ -35,5 +35,6 @@ class PublisherAdmin(admin.ModelAdmin):
     # Displays the Publisher model in the Django admin interface.
 
     list_display = (
+        "id",
         "name",
     )
