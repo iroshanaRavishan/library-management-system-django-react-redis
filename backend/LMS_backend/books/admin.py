@@ -20,3 +20,6 @@ class AuthorAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     # Displays the Category model in the Django admin interface.
 
+    list_display = (
+        "id",
+    )
