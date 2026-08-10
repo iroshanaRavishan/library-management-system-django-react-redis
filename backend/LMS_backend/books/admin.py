@@ -48,6 +48,12 @@ class PublisherAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     # Displays the Book model in the Django admin interface.
 
+    list_display = (
+        "id",
+        "title",
+        "publisher",
+    )
+
     list_filter = (
         "category",
         "publisher",
