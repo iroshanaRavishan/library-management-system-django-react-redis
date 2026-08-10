@@ -51,9 +51,11 @@ class BookAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "title",
+        "isbn",
         "author",
         "category",
         "publisher",
+        "available_copies",
     )
 
     list_filter = (
