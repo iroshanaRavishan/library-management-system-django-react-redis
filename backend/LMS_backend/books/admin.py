@@ -38,3 +38,7 @@ class PublisherAdmin(admin.ModelAdmin):
         "id",
         "name",
     )
+
+    search_fields = (
+        "name",
+    )
