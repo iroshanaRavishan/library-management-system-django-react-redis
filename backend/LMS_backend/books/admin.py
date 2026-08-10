@@ -50,4 +50,5 @@ class BookAdmin(admin.ModelAdmin):
 
     search_fields = (
         "title",
+        "isbn",
     )
