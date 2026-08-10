@@ -51,6 +51,8 @@ class BookAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "title",
+        "author",
+        "category",
         "publisher",
     )
 
