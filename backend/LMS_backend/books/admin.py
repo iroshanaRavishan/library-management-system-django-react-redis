@@ -47,3 +47,7 @@ class PublisherAdmin(admin.ModelAdmin):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     # Displays the Book model in the Django admin interface.
+
+    search_fields = (
+        "title",
+    )
