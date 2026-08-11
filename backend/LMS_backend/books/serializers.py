@@ -13,5 +13,10 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "name",
             "biography",
+        extra_kwargs = {
+            "url": {
+                "view_name": "author-detail"
+            }
+        }
         ]
 
