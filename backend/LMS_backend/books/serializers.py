@@ -10,6 +10,8 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 
         fields = [
             "url",
-            "name"
+            "id",
+            "name",
+            "biography",
         ]
 
