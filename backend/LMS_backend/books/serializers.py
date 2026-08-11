@@ -4,3 +4,7 @@ from .models import Author
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
     # Serializer for Author model.
+
+    class Meta:
+        model = Author
+
