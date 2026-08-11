@@ -8,3 +8,8 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Author
 
+        fields = [
+            "url",
+            "name"
+        ]
+
