@@ -35,3 +35,9 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             "name",
             "description",
         ]
+
+        extra_kwargs = {
+            "url": {
+                "view_name": "category-detail"
+            }
+        }
