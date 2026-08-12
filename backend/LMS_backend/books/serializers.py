@@ -25,3 +25,6 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     # Serializer for Category model.
+
+    class Meta:
+        model = Category
