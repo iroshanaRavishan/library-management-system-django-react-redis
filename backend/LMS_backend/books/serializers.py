@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Author, Category
+from .models import Author, Category, Publisher, Book
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
     # Serializer for Author model.
