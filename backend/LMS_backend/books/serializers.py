@@ -31,5 +31,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
         fields = [
             "url",
+            "id",
             "name",
+            "description",
         ]
