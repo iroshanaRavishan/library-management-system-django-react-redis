@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Author
+from .models import Author, Category
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
     # Serializer for Author model.
@@ -35,9 +35,3 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             "name",
             "description",
         ]
-
-        extra_kwargs = {
-            "url": {
-                "view_name": "category-detail"
-            }
-        }
