@@ -56,3 +56,9 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
             "address",
         ]
 
+        extra_kwargs = {
+            "url": {
+                "view_name": "publisher-detail"
+            }
+        }
+
