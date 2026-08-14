@@ -51,6 +51,8 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
 
         fields = [
             "url",
+            "id",
             "name",
+            "address",
         ]
 
