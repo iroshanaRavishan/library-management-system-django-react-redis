@@ -42,3 +42,6 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             }
         }
 
+
+class PublisherSerializer(serializers.HyperlinkedModelSerializer):
+    # Serializer for Publisher model.
