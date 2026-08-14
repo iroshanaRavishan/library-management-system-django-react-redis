@@ -48,3 +48,9 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Publisher
+
+        fields = [
+            "url",
+            "name",
+        ]
+
