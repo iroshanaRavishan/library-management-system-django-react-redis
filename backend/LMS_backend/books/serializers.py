@@ -75,3 +75,7 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
         view_name="category-detail",
         queryset=Category.objects.all(),
     )
+
+    publisher = serializers.HyperlinkedRelatedField(
+        view_name="publisher-detail",
+    )
