@@ -62,3 +62,7 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
             }
         }
 
+
+
+class BookSerializer(serializers.HyperlinkedModelSerializer):
+    # Serializer for Book model.
