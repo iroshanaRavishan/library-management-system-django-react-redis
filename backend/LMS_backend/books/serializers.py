@@ -89,6 +89,8 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 
         fields = [
             "url",
+            "id",
+            "isbn",
             "title",
             "author",
             "description",
