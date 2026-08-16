@@ -80,3 +80,6 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
         view_name="publisher-detail",
         queryset=Publisher.objects.all(),
     )
+
+    # The client cannot directly modify it.
+    available_copies = serializers.ReadOnlyField()
