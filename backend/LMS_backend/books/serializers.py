@@ -83,3 +83,6 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 
     # The client cannot directly modify it.
     available_copies = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Book
