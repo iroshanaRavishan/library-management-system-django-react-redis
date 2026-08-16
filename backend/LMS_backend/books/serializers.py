@@ -95,3 +95,9 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
             "created_at",
             "updated_at",
         ]
+
+        extra_kwargs = {
+            "url": {
+                "view_name": "book-detail"
+            }
+        }
