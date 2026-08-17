@@ -19,3 +19,11 @@ class AuthorListView(generics.ListCreateAPIView):
     serializer_class = AuthorSerializer
     permission_classes = [IsLibrarianOrReadOnly]
 
+
+class AuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET    -> Retrieve an author
+    PUT    -> Update an author
+    PATCH  -> Partially update an author
+    DELETE -> Delete an author
+    """
