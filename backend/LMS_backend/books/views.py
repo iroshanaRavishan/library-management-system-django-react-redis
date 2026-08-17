@@ -8,3 +8,10 @@ from .serializers import (AuthorSerializer)
 
 from .permissions import IsLibrarianOrReadOnly
 
+
+class AuthorListView(generics.ListCreateAPIView):
+    """
+    GET  -> List authors
+    POST -> Create an author
+    """
+
