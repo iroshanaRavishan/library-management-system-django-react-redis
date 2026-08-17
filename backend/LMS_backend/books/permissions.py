@@ -11,3 +11,9 @@ class IsLibrarianOrReadOnly(permissions.BasePermission):
         # GET, HEAD and OPTIONS are read-only operations.
         if request.method in permissions.SAFE_METHODS:
             return True
+
+        # Only authenticated librarians can modify data.
+        return (
+            request.user.is_authenticated
+            and request.user.role == "LIBRARIAN"
+        )
