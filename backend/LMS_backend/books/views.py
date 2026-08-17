@@ -27,3 +27,5 @@ class AuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
     PATCH  -> Partially update an author
     DELETE -> Delete an author
     """
+
+    queryset = Author.objects.all()
