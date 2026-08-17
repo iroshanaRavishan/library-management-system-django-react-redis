@@ -15,3 +15,5 @@ class AuthorListView(generics.ListCreateAPIView):
     POST -> Create an author
     """
 
+    queryset = Author.objects.all()
+
