@@ -29,3 +29,4 @@ class AuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
 
     queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
