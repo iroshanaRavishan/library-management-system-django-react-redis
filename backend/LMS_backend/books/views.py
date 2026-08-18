@@ -31,3 +31,11 @@ class AuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+
+
+class CategoryListView(generics.ListCreateAPIView):
+    """
+    GET  -> List categories
+    POST -> Create a category
+    """
