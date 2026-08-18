@@ -39,3 +39,5 @@ class CategoryListView(generics.ListCreateAPIView):
     GET  -> List categories
     POST -> Create a category
     """
+
+    queryset = Category.objects.all()
