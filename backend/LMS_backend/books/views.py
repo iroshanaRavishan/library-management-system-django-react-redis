@@ -58,3 +58,5 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     PATCH  -> Partially update a category
     DELETE -> Delete a category
     """
+
+    queryset = Category.objects.all()
