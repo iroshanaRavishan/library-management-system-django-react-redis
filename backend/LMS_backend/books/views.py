@@ -7,7 +7,10 @@ from .models import (
     Category,
 )
 
-from .serializers import (AuthorSerializer)
+from .serializers import (
+    AuthorSerializer,
+    CategorySerializer,
+)
 
 from .permissions import IsLibrarianOrReadOnly
 
