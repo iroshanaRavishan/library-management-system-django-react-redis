@@ -5,6 +5,7 @@ from rest_framework import generics
 from .models import (
     Author,
     Category,
+    Publisher,
 )
 
 from .serializers import (
