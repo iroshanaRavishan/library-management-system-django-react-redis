@@ -46,3 +46,12 @@ class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+
+class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET    -> Retrieve a category
+    PUT    -> Update a category
+    PATCH  -> Partially update a category
+    DELETE -> Delete a category
+    """
