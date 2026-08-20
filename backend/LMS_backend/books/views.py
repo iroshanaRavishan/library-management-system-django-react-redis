@@ -98,3 +98,5 @@ class BookListView(generics.ListCreateAPIView):
     GET  -> List books
     POST -> Create a book
     """
+
+    queryset = Book.objects.all()
