@@ -12,6 +12,8 @@ from .models import (
 from .serializers import (
     AuthorSerializer,
     CategorySerializer,
+    PublisherSerializer,
+    BookSerializer,
 )
 
 from .permissions import IsLibrarianOrReadOnly
