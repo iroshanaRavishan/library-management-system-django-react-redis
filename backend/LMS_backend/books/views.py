@@ -6,6 +6,7 @@ from .models import (
     Author,
     Category,
     Publisher,
+    Book,
 )
 
 from .serializers import (
