@@ -78,3 +78,12 @@ class PublisherListView(generics.ListCreateAPIView):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+
+class PublisherDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET    -> Retrieve a publisher
+    PUT    -> Update a publisher
+    PATCH  -> Partially update a publisher
+    DELETE -> Delete a publisher
+    """
