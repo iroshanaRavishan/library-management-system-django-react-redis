@@ -89,3 +89,4 @@ class PublisherDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
 
     queryset = Publisher.objects.all()
+    serializer_class = PublisherSerializer
