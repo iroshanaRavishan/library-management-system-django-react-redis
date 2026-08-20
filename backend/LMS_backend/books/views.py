@@ -71,3 +71,5 @@ class PublisherListView(generics.ListCreateAPIView):
     GET  -> List publishers
     POST -> Create a publisher
     """
+
+    queryset = Publisher.objects.all()
