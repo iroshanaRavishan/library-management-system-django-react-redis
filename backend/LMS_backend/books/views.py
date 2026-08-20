@@ -90,3 +90,4 @@ class PublisherDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
+    permission_classes = [IsLibrarianOrReadOnly]
