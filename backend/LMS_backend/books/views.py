@@ -73,3 +73,4 @@ class PublisherListView(generics.ListCreateAPIView):
     """
 
     queryset = Publisher.objects.all()
+    serializer_class = PublisherSerializer
