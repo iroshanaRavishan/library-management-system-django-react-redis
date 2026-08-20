@@ -87,3 +87,5 @@ class PublisherDetailView(generics.RetrieveUpdateDestroyAPIView):
     PATCH  -> Partially update a publisher
     DELETE -> Delete a publisher
     """
+
+    queryset = Publisher.objects.all()
