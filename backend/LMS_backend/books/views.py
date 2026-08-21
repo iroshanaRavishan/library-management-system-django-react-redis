@@ -113,3 +113,5 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     PATCH  -> Partially update a book
     DELETE -> Delete a book
     """
+
+    queryset = Book.objects.all()
