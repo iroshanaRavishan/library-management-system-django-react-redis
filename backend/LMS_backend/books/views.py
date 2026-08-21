@@ -104,3 +104,12 @@ class BookListView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+
+class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET    -> Retrieve a book
+    PUT    -> Update a book
+    PATCH  -> Partially update a book
+    DELETE -> Delete a book
+    """
