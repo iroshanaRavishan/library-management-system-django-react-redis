@@ -100,5 +100,7 @@ class BookListView(generics.ListCreateAPIView):
     """
 
     queryset = Book.objects.all()
+
+    queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
