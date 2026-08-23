@@ -121,4 +121,4 @@ class BookSearchView(generics.ListAPIView):
     Search books by title, ISBN, author, or category.
     """
 
-    
+    serializer_class = BookSerializer
