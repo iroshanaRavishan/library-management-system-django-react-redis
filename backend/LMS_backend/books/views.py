@@ -129,3 +129,7 @@ class BookSearchView(generics.ListAPIView):
 
         if not keyword:
             return Book.objects.none()
+
+        return Book.objects.filter(
+            Q(title__icontains=keyword)
+        )
