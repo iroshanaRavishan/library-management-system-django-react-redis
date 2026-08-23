@@ -126,3 +126,6 @@ class BookSearchView(generics.ListAPIView):
 
     def get_queryset(self):
         keyword = self.request.query_params.get("keyword", "").strip()
+
+        if not keyword:
+            return Book.objects.none()
