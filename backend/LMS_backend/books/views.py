@@ -135,4 +135,4 @@ class BookSearchView(generics.ListAPIView):
             | Q(isbn__icontains=keyword)
             | Q(author__name__icontains=keyword)
             | Q(category__name__icontains=keyword)
-        )
+        ).distinct()
