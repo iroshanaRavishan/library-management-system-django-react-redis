@@ -62,3 +62,49 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
             }
         }
 
+
+
+class BookSerializer(serializers.HyperlinkedModelSerializer):
+    # Serializer for Book model.
+    author = serializers.HyperlinkedRelatedField(
+        view_name="author-detail",
+        queryset=Author.objects.all(),
+    )
+
+    category = serializers.HyperlinkedRelatedField(
+        view_name="category-detail",
+        queryset=Category.objects.all(),
+    )
+
+    publisher = serializers.HyperlinkedRelatedField(
+        view_name="publisher-detail",
+        queryset=Publisher.objects.all(),
+    )
+
+    # The client cannot directly modify it.
+    available_copies = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Book
+
+        fields = [
+            "url",
+            "id",
+            "isbn",
+            "title",
+            "author",
+            "category",
+            "publisher",
+            "publication_year",
+            "total_copies",
+            "available_copies",
+            "description",
+            "created_at",
+            "updated_at",
+        ]
+
+        extra_kwargs = {
+            "url": {
+                "view_name": "book-detail"
+            }
+        }
