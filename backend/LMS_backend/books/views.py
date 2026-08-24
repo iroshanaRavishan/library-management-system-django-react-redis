@@ -133,3 +133,4 @@ class BookSearchView(generics.ListAPIView):
         return Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
+            | Q(author__name__icontains=keyword)
