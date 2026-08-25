@@ -4,7 +4,9 @@ from .views import (
     AuthorListView,
     AuthorDetailView,
     CategoryListView,
-    CategoryDetailView
+    CategoryDetailView,
+    PublisherListView,
+    PublisherDetailView
 )
 
 
