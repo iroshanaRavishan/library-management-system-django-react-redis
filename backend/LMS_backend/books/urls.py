@@ -6,7 +6,9 @@ from .views import (
     CategoryListView,
     CategoryDetailView,
     PublisherListView,
-    PublisherDetailView
+    PublisherDetailView,
+    BookListView,
+    BookDetailView,
 )
 
 
@@ -49,5 +51,24 @@ urlpatterns = [
         "publishers/<int:pk>/",
         PublisherDetailView.as_view(),
         name="publisher-detail",
+    ),
+
+    # Books
+    path(
+        "books/",
+        BookListView.as_view(),
+        name="book-list",
+    ),
+
+    path(
+        "books/search/",
+        BookSearchView.as_view(),
+        name="book-search",
+    ),
+
+    path(
+        "books/<int:pk>/",
+        BookDetailView.as_view(),
+        name="book-detail",
     ),
 ]
