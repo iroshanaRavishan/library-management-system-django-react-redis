@@ -29,4 +29,10 @@ urlpatterns = [
         CategoryListView.as_view(),
         name="category-list",
     ),
+
+    path(
+        "categories/<int:pk>/",
+        CategoryDetailView.as_view(),
+        name="category-detail",
+    ),
 ]
