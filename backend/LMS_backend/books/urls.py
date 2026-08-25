@@ -37,4 +37,17 @@ urlpatterns = [
         CategoryDetailView.as_view(),
         name="category-detail",
     ),
+
+    # Publishers
+    path(
+        "publishers/",
+        PublisherListView.as_view(),
+        name="publisher-list",
+    ),
+
+    path(
+        "publishers/<int:pk>/",
+        PublisherDetailView.as_view(),
+        name="publisher-detail",
+    ),
 ]
