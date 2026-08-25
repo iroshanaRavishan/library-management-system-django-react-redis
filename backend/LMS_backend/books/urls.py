@@ -23,4 +23,10 @@ urlpatterns = [
         name="author-detail",
     ),
 
+    # Categories
+    path(
+        "categories/",
+        CategoryListView.as_view(),
+        name="category-list",
+    ),
 ]
