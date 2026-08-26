@@ -136,7 +136,7 @@ class BookSearchView(generics.ListAPIView):
         if not keyword:
             return Response([])
 
-        return Book.objects.filter(
+        queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
             | Q(author__name__icontains=keyword)
