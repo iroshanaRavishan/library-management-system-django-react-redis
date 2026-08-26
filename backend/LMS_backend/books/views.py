@@ -121,6 +121,7 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 class BookSearchView(generics.ListAPIView):
     """
     Search books by title, ISBN, author, or category.
+    Results are cached in Redis for 10 minutes.
     """
 
     serializer_class = BookSerializer
