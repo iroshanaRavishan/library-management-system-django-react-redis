@@ -127,7 +127,7 @@ class BookSearchView(generics.ListAPIView):
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
 
-    def get_queryset(self):
+    def get(self, request, *args, **kwargs):
         keyword = self.request.query_params.get("keyword", "").strip()
 
         if not keyword:
