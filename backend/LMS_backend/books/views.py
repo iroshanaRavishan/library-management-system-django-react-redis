@@ -132,6 +132,7 @@ class BookSearchView(generics.ListAPIView):
         # Get search keyword from query parameter
         keyword = request.query_params.get("keyword", "").strip().lower()
 
+        # If no keyword was provided
         if not keyword:
             return Book.objects.none()
 
