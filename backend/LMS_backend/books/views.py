@@ -128,7 +128,7 @@ class BookSearchView(generics.ListAPIView):
     permission_classes = [IsLibrarianOrReadOnly]
 
     def get(self, request, *args, **kwargs):
-        keyword = self.request.query_params.get("keyword", "").strip().lower()
+        keyword = request.query_params.get("keyword", "").strip().lower()
 
         if not keyword:
             return Book.objects.none()
