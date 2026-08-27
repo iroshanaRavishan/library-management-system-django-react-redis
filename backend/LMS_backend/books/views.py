@@ -138,6 +138,10 @@ class BookSearchView(generics.ListAPIView):
 
         # Create a unique Redis key for this search
         cache_key = f"book_search:{keyword}"
+
+        # Try to get results from Redis
+        cached_data = cache.get(cache)
+
         queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
