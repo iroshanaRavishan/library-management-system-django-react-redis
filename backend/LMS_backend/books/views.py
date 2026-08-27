@@ -144,7 +144,7 @@ class BookSearchView(generics.ListAPIView):
 
         # Cache HIT
         if cached_data is not None:
-            return cached_data
+            return Response(cached_data)
 
         queryset = Book.objects.filter(
             Q(title__icontains=keyword)
