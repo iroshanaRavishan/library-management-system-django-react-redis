@@ -140,7 +140,7 @@ class BookSearchView(generics.ListAPIView):
         cache_key = f"book_search:{keyword}"
 
         # Try to get results from Redis
-        cached_data = cache.get(cache)
+        cached_data = cache.get(cache_key)
 
         queryset = Book.objects.filter(
             Q(title__icontains=keyword)
