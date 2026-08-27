@@ -136,6 +136,8 @@ class BookSearchView(generics.ListAPIView):
         if not keyword:
             return Response([])
 
+        # Create a unique Redis key for this search
+        cache_key = f"book_search:{keyword}"
         queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
