@@ -146,6 +146,7 @@ class BookSearchView(generics.ListAPIView):
         if cached_data is not None:
             return Response(cached_data)
 
+        # Cache MISS
         queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
