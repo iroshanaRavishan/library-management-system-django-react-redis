@@ -142,6 +142,10 @@ class BookSearchView(generics.ListAPIView):
         # Try to get results from Redis
         cached_data = cache.get(cache_key)
 
+        # Cache HIT
+        if cached_data is not None:
+            return cached_data
+
         queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
