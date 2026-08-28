@@ -153,3 +153,6 @@ class BookSearchView(generics.ListAPIView):
             | Q(author__name__icontains=keyword)
             | Q(category__name__icontains=keyword)
         ).distinct()
+
+        # Serialize database results
+        serializer = self.get_serializer()
