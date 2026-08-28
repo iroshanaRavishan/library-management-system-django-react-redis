@@ -159,3 +159,6 @@ class BookSearchView(generics.ListAPIView):
             queryset,
             many=True
         )
+
+        # Store results in Redis for 10 minutes
+        cache.set(cache_key)
