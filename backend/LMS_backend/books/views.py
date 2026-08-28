@@ -155,4 +155,7 @@ class BookSearchView(generics.ListAPIView):
         ).distinct()
 
         # Serialize database results
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = self.get_serializer(
+            queryset,
+            many=True
+        )
