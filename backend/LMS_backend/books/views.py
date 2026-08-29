@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.db.models import Q
 from rest_framework import generics
+from django.core.cache import cache
+from rest_framework.response import Response
 
 from .models import (
     Author,
@@ -119,20 +121,50 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 class BookSearchView(generics.ListAPIView):
     """
     Search books by title, ISBN, author, or category.
+    Results are cached in Redis for 10 minutes.
     """
 
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
 
-    def get_queryset(self):
-        keyword = self.request.query_params.get("keyword", "").strip()
+    def get(self, request, *args, **kwargs):
 
+        # Get search keyword from query parameter
+        keyword = request.query_params.get("keyword", "").strip().lower()
+
+        # If no keyword was provided
         if not keyword:
-            return Book.objects.none()
+            return Response([])
 
-        return Book.objects.filter(
+        # Create a unique Redis key for this search
+        cache_key = f"book_search:{keyword}"
+
+        # Try to get results from Redis
+        cached_data = cache.get(cache_key)
+
+        # Cache HIT
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # Cache MISS
+        queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
             | Q(author__name__icontains=keyword)
             | Q(category__name__icontains=keyword)
         ).distinct()
+
+        # Serialize database results
+        serializer = self.get_serializer(
+            queryset,
+            many=True
+        )
+
+        # Store results in Redis for 10 minutes
+        cache.set(
+            cache_key,
+            serializer.data,
+            timeout=60 * 10
+        )
+
+        return Response(serializer.data)
