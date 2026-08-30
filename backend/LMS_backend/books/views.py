@@ -116,6 +116,7 @@ class BookListView(generics.ListCreateAPIView):
 
         # save the new book to the database
         serializer.save()
+        invalidate_book_search_cache()
 
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
