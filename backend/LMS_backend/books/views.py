@@ -114,6 +114,9 @@ class BookListView(generics.ListCreateAPIView):
     def perform_create(self, serializer): 
     # create a new book and invalidate the cache for book search results
 
+        # save the new book to the database
+        serializer.save()
+
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET    -> Retrieve a book
