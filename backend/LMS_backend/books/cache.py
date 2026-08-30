@@ -12,3 +12,9 @@ def invalidate_book_search_cache():
     # Delete the cached search results.
     if keys:
         cache.delete_many(keys)
+
+
+def invalidate_book_detail_cache(book_id):
+    """
+    Remove the cached details of a specific book.
+    """
