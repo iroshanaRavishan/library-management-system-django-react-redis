@@ -18,3 +18,5 @@ def invalidate_book_detail_cache(book_id):
     """
     Remove the cached details of a specific book.
     """
+
+    cache.delete(f"book:{book_id}")
