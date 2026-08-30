@@ -11,6 +11,8 @@ from .models import (
     Book,
 )
 
+from .cache import (invalidate_book_search_cache)
+
 from .serializers import (
     AuthorSerializer,
     CategorySerializer,
