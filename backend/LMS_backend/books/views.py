@@ -147,6 +147,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         if cached_data is not None:
             return Response(cached_data)
 
+        # Cache MISS
+        instance = self.get_object()
+
         
 
 class BookSearchView(generics.ListAPIView):
