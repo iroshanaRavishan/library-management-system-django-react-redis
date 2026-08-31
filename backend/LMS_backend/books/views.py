@@ -143,6 +143,10 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Try to get the book from Redis.
         cached_data = cache.get(cache_key)
 
+        # Cache HIT
+        if cached_data is not None:
+
+        
 
 class BookSearchView(generics.ListAPIView):
     """
