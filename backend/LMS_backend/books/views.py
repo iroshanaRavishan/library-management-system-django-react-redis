@@ -111,7 +111,7 @@ class BookListView(generics.ListCreateAPIView):
     permission_classes = [IsLibrarianOrReadOnly]
 
 
-    def perform_create(self, serializer): 
+    def perform_create(self, serializer):
     # create a new book and invalidate the cache for book search results
 
         # save the new book to the database
@@ -131,6 +131,8 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+    def retrieve(self, request, *args, **kwargs):
 
 class BookSearchView(generics.ListAPIView):
     """
