@@ -137,6 +137,10 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Get the book ID from the URL.
         book_id = kwargs["pk"]
 
+        # Redis key for this specific book.
+        cache_key = f"book:{book_id}"
+
+
 class BookSearchView(generics.ListAPIView):
     """
     Search books by title, ISBN, author, or category.
