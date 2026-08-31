@@ -134,6 +134,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def retrieve(self, request, *args, **kwargs):
 
+        # Get the book ID from the URL.
+        book_id = kwargs["pk"]
+
 class BookSearchView(generics.ListAPIView):
     """
     Search books by title, ISBN, author, or category.
