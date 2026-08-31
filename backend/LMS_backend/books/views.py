@@ -145,6 +145,7 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         # Cache HIT
         if cached_data is not None:
+            return Response(cached_data)
 
         
 
