@@ -168,6 +168,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Invalidate this book's detail cache.
         invalidate_book_detail_cache(instance.id)
 
+        # Search results may also contain this book.
+        invalidate_book_search_cache()
+
         
 
 class BookSearchView(generics.ListAPIView):
