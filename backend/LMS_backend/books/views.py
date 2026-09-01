@@ -152,6 +152,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         serializer = self.get_serializer(instance)
 
+        # Store the serialized book in Redis for 30 minutes.
+        cache.set(cache_key)
+
         
 
 class BookSearchView(generics.ListAPIView):
