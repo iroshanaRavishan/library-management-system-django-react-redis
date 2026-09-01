@@ -158,6 +158,8 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
             serializer.data,
             timeout=60 * 30
         )
+
+        return Response(serializer.data)
         
 
 class BookSearchView(generics.ListAPIView):
