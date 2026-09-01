@@ -165,6 +165,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Update the book in the database.
         instance = serializer.save()
 
+        # Invalidate this book's detail cache.
+        invalidate_book_detail_cache(instance.id)
+
         
 
 class BookSearchView(generics.ListAPIView):
