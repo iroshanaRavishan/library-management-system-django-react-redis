@@ -150,6 +150,8 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Cache MISS
         instance = self.get_object()
 
+        serializer = self.get_serializer(instance)
+
         
 
 class BookSearchView(generics.ListAPIView):
