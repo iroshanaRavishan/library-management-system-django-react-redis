@@ -160,6 +160,11 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         )
 
         return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        # Update the book in the database.
+        instance = serializer.save()
+
         
 
 class BookSearchView(generics.ListAPIView):
