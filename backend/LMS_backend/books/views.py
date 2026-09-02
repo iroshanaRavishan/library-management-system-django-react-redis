@@ -171,6 +171,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Search results may also contain this book.
         invalidate_book_search_cache()
 
+    def perform_destroy(self, instance):
+
+
         
 
 class BookSearchView(generics.ListAPIView):
