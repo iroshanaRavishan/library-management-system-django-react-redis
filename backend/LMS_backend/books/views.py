@@ -173,6 +173,7 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_destroy(self, instance):
 
+        book_id = instance.id
 
         
 
