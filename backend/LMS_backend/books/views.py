@@ -173,6 +173,7 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_destroy(self, instance):
 
+        # Get the book ID before deletion.
         book_id = instance.id
 
         # Delete the book from the database.
