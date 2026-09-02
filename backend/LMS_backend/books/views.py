@@ -175,6 +175,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         book_id = instance.id
 
+        # Delete the book from the database.
+        instance.delete()
+
         
 
 class BookSearchView(generics.ListAPIView):
