@@ -11,6 +11,11 @@ from .models import (
     Book,
 )
 
+from .cache import (
+    invalidate_book_search_cache,
+    invalidate_book_detail_cache,
+)
+
 from .serializers import (
     AuthorSerializer,
     CategorySerializer,
@@ -106,6 +111,15 @@ class BookListView(generics.ListCreateAPIView):
     permission_classes = [IsLibrarianOrReadOnly]
 
 
+    def perform_create(self, serializer):
+    # create a new book and invalidate the cache for book search results
+
+        # save the new book to the database
+        serializer.save()
+
+        # invalidate the cache for book search results
+        invalidate_book_search_cache()
+
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET    -> Retrieve a book
@@ -117,6 +131,61 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+    def retrieve(self, request, *args, **kwargs):
+
+        # Get the book ID from the URL.
+        book_id = kwargs["pk"]
+
+        # Redis key for this specific book.
+        cache_key = f"book:{book_id}"
+
+        # Try to get the book from Redis.
+        cached_data = cache.get(cache_key)
+
+        # Cache HIT
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # Cache MISS
+        instance = self.get_object()
+
+        serializer = self.get_serializer(instance)
+
+        # Store the serialized book in Redis for 30 minutes.
+        cache.set(
+            cache_key,
+            serializer.data,
+            timeout=60 * 30
+        )
+
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        # Update the book in the database.
+        instance = serializer.save()
+
+        # Invalidate this book's detail cache.
+        invalidate_book_detail_cache(instance.id)
+
+        # Search results may also contain this book.
+        invalidate_book_search_cache()
+
+    def perform_destroy(self, instance):
+
+        # Get the book ID before deletion.
+        book_id = instance.id
+
+        # Delete the book from the database.
+        instance.delete()
+
+        # Remove its detail cache.
+        invalidate_book_detail_cache(book_id)
+
+        # Remove potentially stale search results.
+        invalidate_book_search_cache()
+
+        
 
 class BookSearchView(generics.ListAPIView):
     """
