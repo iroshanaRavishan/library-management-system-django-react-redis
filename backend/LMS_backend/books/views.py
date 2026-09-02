@@ -178,6 +178,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Delete the book from the database.
         instance.delete()
 
+        # Remove its detail cache.
+        invalidate_book_detail_cache(book_id)
+
         
 
 class BookSearchView(generics.ListAPIView):
