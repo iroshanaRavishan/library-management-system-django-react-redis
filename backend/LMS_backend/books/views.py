@@ -1,12 +1,19 @@
 from django.shortcuts import render
 from django.db.models import Q
 from rest_framework import generics
+from django.core.cache import cache
+from rest_framework.response import Response
 
 from .models import (
     Author,
     Category,
     Publisher,
     Book,
+)
+
+from .cache import (
+    invalidate_book_search_cache,
+    invalidate_book_detail_cache,
 )
 
 from .serializers import (
@@ -104,6 +111,15 @@ class BookListView(generics.ListCreateAPIView):
     permission_classes = [IsLibrarianOrReadOnly]
 
 
+    def perform_create(self, serializer):
+    # create a new book and invalidate the cache for book search results
+
+        # save the new book to the database
+        serializer.save()
+
+        # invalidate the cache for book search results
+        invalidate_book_search_cache()
+
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET    -> Retrieve a book
@@ -116,23 +132,108 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
 
+    def retrieve(self, request, *args, **kwargs):
+
+        # Get the book ID from the URL.
+        book_id = kwargs["pk"]
+
+        # Redis key for this specific book.
+        cache_key = f"book:{book_id}"
+
+        # Try to get the book from Redis.
+        cached_data = cache.get(cache_key)
+
+        # Cache HIT
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # Cache MISS
+        instance = self.get_object()
+
+        serializer = self.get_serializer(instance)
+
+        # Store the serialized book in Redis for 30 minutes.
+        cache.set(
+            cache_key,
+            serializer.data,
+            timeout=60 * 30
+        )
+
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        # Update the book in the database.
+        instance = serializer.save()
+
+        # Invalidate this book's detail cache.
+        invalidate_book_detail_cache(instance.id)
+
+        # Search results may also contain this book.
+        invalidate_book_search_cache()
+
+    def perform_destroy(self, instance):
+
+        # Get the book ID before deletion.
+        book_id = instance.id
+
+        # Delete the book from the database.
+        instance.delete()
+
+        # Remove its detail cache.
+        invalidate_book_detail_cache(book_id)
+
+        # Remove potentially stale search results.
+        invalidate_book_search_cache()
+
+        
+
 class BookSearchView(generics.ListAPIView):
     """
     Search books by title, ISBN, author, or category.
+    Results are cached in Redis for 10 minutes.
     """
 
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
 
-    def get_queryset(self):
-        keyword = self.request.query_params.get("keyword", "").strip()
+    def get(self, request, *args, **kwargs):
 
+        # Get search keyword from query parameter
+        keyword = request.query_params.get("keyword", "").strip().lower()
+
+        # If no keyword was provided
         if not keyword:
-            return Book.objects.none()
+            return Response([])
 
-        return Book.objects.filter(
+        # Create a unique Redis key for this search
+        cache_key = f"book_search:{keyword}"
+
+        # Try to get results from Redis
+        cached_data = cache.get(cache_key)
+
+        # Cache HIT
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # Cache MISS
+        queryset = Book.objects.filter(
             Q(title__icontains=keyword)
             | Q(isbn__icontains=keyword)
             | Q(author__name__icontains=keyword)
             | Q(category__name__icontains=keyword)
         ).distinct()
+
+        # Serialize database results
+        serializer = self.get_serializer(
+            queryset,
+            many=True
+        )
+
+        # Store results in Redis for 10 minutes
+        cache.set(
+            cache_key,
+            serializer.data,
+            timeout=60 * 10
+        )
+
+        return Response(serializer.data)
