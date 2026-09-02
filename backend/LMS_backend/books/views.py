@@ -181,6 +181,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Remove its detail cache.
         invalidate_book_detail_cache(book_id)
 
+        # Remove potentially stale search results.
+        invalidate_book_search_cache()
+
         
 
 class BookSearchView(generics.ListAPIView):
