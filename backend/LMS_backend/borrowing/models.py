@@ -11,3 +11,7 @@ class BorrowTransaction(models.Model):
     A transaction is created when a member borrows a book.
     When the book is returned, returned_at is populated.
     """
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL
+    )
