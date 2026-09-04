@@ -23,3 +23,7 @@ class BorrowTransaction(models.Model):
         on_delete=models.CASCADE,
         related_name="borrow_transactions",
     )
+
+    borrowed_at = models.DateTimeField(
+        auto_now_add=True
+    )
