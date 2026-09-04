@@ -27,3 +27,5 @@ class BorrowTransaction(models.Model):
     borrowed_at = models.DateTimeField(
         auto_now_add=True
     )
+
+    due_date = models.DateTimeField()
