@@ -17,3 +17,7 @@ class BorrowTransaction(models.Model):
         on_delete=models.CASCADE,
         related_name="borrow_transactions",
     )
+
+    book = models.ForeignKey(
+        Book,
+    )
