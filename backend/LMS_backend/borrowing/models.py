@@ -20,4 +20,5 @@ class BorrowTransaction(models.Model):
 
     book = models.ForeignKey(
         Book,
+        related_name="borrow_transactions",
     )
