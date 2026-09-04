@@ -29,3 +29,5 @@ class BorrowTransaction(models.Model):
     )
 
     due_date = models.DateTimeField()
+
+    returned_at = models.DateTimeField()
