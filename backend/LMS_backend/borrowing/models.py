@@ -40,3 +40,9 @@ class BorrowTransaction(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.book.title}"
+
+    @property
+    def is_returned(self):
+        """
+        Returns True when the book has been returned.
+        """
