@@ -32,4 +32,5 @@ class BorrowTransaction(models.Model):
 
     returned_at = models.DateTimeField(
         null=True,
+        blank=True,
     )
