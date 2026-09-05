@@ -55,3 +55,5 @@ class BorrowTransaction(models.Model):
         and the due date has passed.
         """
         from django.utils import timezone
+
+        return (self.returned_at)
