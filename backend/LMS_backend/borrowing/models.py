@@ -34,3 +34,6 @@ class BorrowTransaction(models.Model):
         null=True,
         blank=True,
     )
+
+    class Meta:
+        ordering = ["-borrowed_at"]
