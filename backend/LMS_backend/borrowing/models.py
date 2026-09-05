@@ -54,4 +54,4 @@ class BorrowTransaction(models.Model):
         Returns True when the book has not been returned
         and the due date has passed.
         """
-    
+        from django.utils import timezone
