@@ -47,3 +47,11 @@ class BorrowTransaction(models.Model):
         Returns True when the book has been returned.
         """
         return self.returned_at is not None
+
+    @property
+    def is_overdue(self):
+        """
+        Returns True when the book has not been returned
+        and the due date has passed.
+        """
+    
