@@ -56,4 +56,6 @@ class BorrowTransaction(models.Model):
         """
         from django.utils import timezone
 
-        return (self.returned_at)
+        return (
+            self.returned_at is None
+        )
