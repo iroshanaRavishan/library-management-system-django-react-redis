@@ -37,3 +37,6 @@ class BorrowTransaction(models.Model):
 
     class Meta:
         ordering = ["-borrowed_at"]
+
+    def __str__(self):
+        return f"{self.book.title}"
