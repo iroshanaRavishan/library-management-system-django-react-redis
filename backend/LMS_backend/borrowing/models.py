@@ -46,3 +46,4 @@ class BorrowTransaction(models.Model):
         """
         Returns True when the book has been returned.
         """
+        return self.returned_at is not None
