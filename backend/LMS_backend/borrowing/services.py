@@ -11,4 +11,4 @@ def borrow_book(user, book_id, due_date):
     with transaction.atomic():
 
         # Get the book from the database.
-        book = Book.objects.get()
+        book = Book.objects.get(id=book_id)
