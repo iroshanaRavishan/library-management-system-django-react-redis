@@ -12,3 +12,7 @@ def borrow_book(user, book_id, due_date):
 
         # Get the book from the database.
         book = Book.objects.get(id=book_id)
+
+        # Check whether the book has any available copies.
+        if book.available_copies <= 0:
+          
