@@ -58,4 +58,5 @@ class BorrowTransaction(models.Model):
 
         return (
             self.returned_at is None
+            and timezone.now() > self.due_date
         )
