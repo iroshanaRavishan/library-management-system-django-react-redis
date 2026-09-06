@@ -9,3 +9,6 @@ def borrow_book(user, book_id, due_date):
     # Start a database transaction so all database changes
     # succeed together or are rolled back together.
     with transaction.atomic():
+
+        # Get the book from the database.
+        book = Book.objects.get()
