@@ -15,4 +15,4 @@ def borrow_book(user, book_id, due_date):
 
         # Check whether the book has any available copies.
         if book.available_copies <= 0:
-          
+            raise ValueError("No copies of this book are currently available.")
