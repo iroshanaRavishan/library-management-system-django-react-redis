@@ -19,7 +19,9 @@ def borrow_book(user, book_id, due_date):
 
         # Check whether this user already has an active borrowing
         # transaction for the same book.
-        already_borrowed = BorrowTransaction.objects.filter().exists()
+        already_borrowed = BorrowTransaction.objects.filter(
+            user=user,
+        ).exists()
 
         # Prevent the same user from borrowing the same book twice
         # without returning the first copy.
