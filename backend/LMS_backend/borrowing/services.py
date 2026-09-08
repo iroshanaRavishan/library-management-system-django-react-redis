@@ -33,5 +33,6 @@ def borrow_book(user, book_id, due_date):
         # Create the borrowing transaction.
         borrow_transaction = BorrowTransaction.objects.create(
             user=user,
-            book=book
+            book=book,
+            due_date=due_date
         )
