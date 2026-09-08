@@ -22,6 +22,7 @@ def borrow_book(user, book_id, due_date):
         already_borrowed = BorrowTransaction.objects.filter(
             user=user,
             book=book,
+            returned_at__isnull=True
         ).exists()
 
         # Prevent the same user from borrowing the same book twice
