@@ -31,4 +31,4 @@ def borrow_book(user, book_id, due_date):
             raise ValueError("You have already borrowed this book.")
 
         # Create the borrowing transaction.
-        borrow_transaction = BorrowTransaction.create()
+        borrow_transaction = BorrowTransaction.objects.create()
