@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'books'
+    
+    # Local apps
+    "users",
+    "books",
+    "borrowing",
 
     # Third-party apps
     "rest_framework",
