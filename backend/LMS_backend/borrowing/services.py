@@ -41,4 +41,4 @@ def borrow_book(user, book_id, due_date):
         book.available_copies -= 1
 
         # Save the updated availability.
-        book.save()
+        book.save(update_fields=["available_copies"])
