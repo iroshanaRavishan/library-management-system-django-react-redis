@@ -42,3 +42,6 @@ def borrow_book(user, book_id, due_date):
 
         # Save the updated availability.
         book.save(update_fields=["available_copies"])
+
+        # Invalidate caches because book availability has changed.
+        cache.delete(f"book:{book}")
