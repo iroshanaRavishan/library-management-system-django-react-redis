@@ -53,3 +53,6 @@ def borrow_book(user, book_id, due_date):
 
         # Dashboard statistics may also have changed.
         cache.delete("library_dashboard")
+
+        # Popular books statistics may have changed.
+        cache.delete("popular_books")
