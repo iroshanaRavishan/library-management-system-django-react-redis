@@ -50,3 +50,6 @@ def borrow_book(user, book_id, due_date):
         keys = cache.keys("book_search:*")
         if keys:
             cache.delete_many(keys)
+
+        # Dashboard statistics may also have changed.
+        cache.delete("library_dashboard")
