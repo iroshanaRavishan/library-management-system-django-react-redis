@@ -48,4 +48,5 @@ def borrow_book(user, book_id, due_date):
 
         # Search results may contain the old availability.
         keys = cache.keys("book_search:*")
-
+        if keys:
+            cache.delete_many()
