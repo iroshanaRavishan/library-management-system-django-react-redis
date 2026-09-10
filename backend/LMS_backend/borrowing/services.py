@@ -45,3 +45,7 @@ def borrow_book(user, book_id, due_date):
 
         # Invalidate caches because book availability has changed.
         cache.delete(f"book:{book.id}")
+
+        # Search results may contain the old availability.
+        keys = cache.keys("book_search:*")
+
