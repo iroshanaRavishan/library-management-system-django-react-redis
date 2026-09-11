@@ -77,3 +77,6 @@ def return_book(transaction_id):
         # Make sure the book has not already been returned.
         if borrow_transaction.returned_at is not None:
             raise ValueError("This book has already been returned.")
+
+        # Record the return time.
+        borrow_transaction = timezone.now()
