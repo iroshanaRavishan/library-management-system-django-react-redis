@@ -70,4 +70,6 @@ def return_book(transaction_id):
     with transaction.atomic():
 
         # Find the borrowing transaction.
-        borrow_transaction = BorrowTransaction.objects.select_related()
+        borrow_transaction = BorrowTransaction.objects.select_related(
+            "book"
+        )
