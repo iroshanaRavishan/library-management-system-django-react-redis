@@ -56,3 +56,6 @@ def borrow_book(user, book_id, due_date):
 
         # Popular books statistics may have changed.
         cache.delete("popular_books")
+
+        # Return the newly created transaction.
+        return borrow_transaction
