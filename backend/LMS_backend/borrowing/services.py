@@ -82,4 +82,4 @@ def return_book(transaction_id):
         borrow_transaction.returned_at = timezone.now()
 
         # Save the return time.
-        borrow_transaction.save()
+        borrow_transaction.save(update_fields=["returned_at"])
