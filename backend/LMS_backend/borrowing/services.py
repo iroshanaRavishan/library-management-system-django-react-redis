@@ -79,4 +79,4 @@ def return_book(transaction_id):
             raise ValueError("This book has already been returned.")
 
         # Record the return time.
-        borrow_transaction = timezone.now()
+        borrow_transaction.returned_at = timezone.now()
