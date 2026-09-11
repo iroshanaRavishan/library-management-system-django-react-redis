@@ -59,3 +59,9 @@ def borrow_book(user, book_id, due_date):
 
         # Return the newly created transaction.
         return borrow_transaction
+
+
+def return_book():
+    """
+    Handles the complete business process of returning a book.
+    """
