@@ -72,4 +72,4 @@ def return_book(transaction_id):
         # Find the borrowing transaction.
         borrow_transaction = BorrowTransaction.objects.select_related(
             "book"
-        ).get()
+        ).get(id=transaction_id)
