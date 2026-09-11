@@ -73,3 +73,6 @@ def return_book(transaction_id):
         borrow_transaction = BorrowTransaction.objects.select_related(
             "book"
         ).get(id=transaction_id)
+
+        # Make sure the book has not already been returned.
+        if borrow_transaction.returned_at is not None:
