@@ -92,3 +92,6 @@ def return_book(transaction_id):
 
         # Save the updated availability.
         book.save(update_fields=["available_copies"])
+
+        # Invalidate the book detail cache.
+        cache.delete(f"book:{book}")
