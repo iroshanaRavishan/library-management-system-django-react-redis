@@ -91,4 +91,4 @@ def return_book(transaction_id):
         book.available_copies += 1
 
         # Save the updated availability.
-        book.save()
+        book.save(update_fields=["available_copies"])
