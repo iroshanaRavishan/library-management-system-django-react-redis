@@ -83,3 +83,6 @@ def return_book(transaction_id):
 
         # Save the return time.
         borrow_transaction.save(update_fields=["returned_at"])
+
+        # Get the related book.
+        book = borrow_transaction
