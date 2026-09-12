@@ -89,3 +89,6 @@ def return_book(transaction_id):
 
         # Increase the number of available copies by one.
         book.available_copies += 1
+
+        # Save the updated availability.
+        book.save()
