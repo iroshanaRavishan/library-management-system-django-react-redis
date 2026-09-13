@@ -95,3 +95,7 @@ def return_book(transaction_id):
 
         # Invalidate the book detail cache.
         cache.delete(f"book:{book.id}")
+
+        # Invalidate book search caches.
+        keys = cache.keys("book_search:*")
+    
