@@ -106,3 +106,6 @@ def return_book(transaction_id):
 
         # Popular books statistics may have changed.
         cache.delete("popular_books")
+
+        # Return the updated transaction.
+        return borrow_transaction
