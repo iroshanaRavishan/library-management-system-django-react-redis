@@ -105,4 +105,4 @@ def return_book(transaction_id):
         cache.delete("library_dashboard")
 
         # Popular books statistics may have changed.
-        cache.delete()
+        cache.delete("popular_books")
