@@ -103,3 +103,6 @@ def return_book(transaction_id):
 
         # Invalidate dashboard cache.
         cache.delete("library_dashboard")
+
+        # Popular books statistics may have changed.
+        cache.delete()
