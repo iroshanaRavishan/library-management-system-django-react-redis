@@ -100,3 +100,6 @@ def return_book(transaction_id):
         keys = cache.keys("book_search:*")
         if keys:
             cache.delete_many(keys)
+
+        # Invalidate dashboard cache.
+        cache.delete()
