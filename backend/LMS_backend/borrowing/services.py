@@ -102,4 +102,4 @@ def return_book(transaction_id):
             cache.delete_many(keys)
 
         # Invalidate dashboard cache.
-        cache.delete()
+        cache.delete("library_dashboard")
