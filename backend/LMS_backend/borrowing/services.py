@@ -1,6 +1,11 @@
 from django.db import transaction
 from django.utils import timezone
 
+from books.models import Book
+from borrowing.models import BorrowTransaction
+from django.core.cache import cache
+
+
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
