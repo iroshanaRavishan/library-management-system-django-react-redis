@@ -99,3 +99,4 @@ def return_book(transaction_id):
         # Invalidate book search caches.
         keys = cache.keys("book_search:*")
         if keys:
+            cache.delete_many(keys)
