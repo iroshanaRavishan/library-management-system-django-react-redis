@@ -33,3 +33,6 @@ def invalidate_borrowing_caches(book_id):
     keys = cache.keys("book_search:*")
     if keys:
         cache.delete_many(keys)
+
+    # Invalidate popular books cache
+    cache.delete("popular_books")
