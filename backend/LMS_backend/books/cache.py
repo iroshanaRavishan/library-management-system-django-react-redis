@@ -26,3 +26,5 @@ def invalidate_borrowing_caches(book_id):
     """
     Invalidate caches related to borrowing a book.
     """
+    # Invalidate the individual book cache
+    cache.delete(f"book:{book_id}")
