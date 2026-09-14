@@ -36,3 +36,6 @@ def invalidate_borrowing_caches(book_id):
 
     # Invalidate popular books cache
     cache.delete("popular_books")
+
+    # Invalidate dashboard cache
+    cache.delete("library_dashboard")
