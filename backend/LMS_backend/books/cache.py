@@ -20,3 +20,9 @@ def invalidate_book_detail_cache(book_id):
     """
 
     cache.delete(f"book:{book_id}")
+
+
+def invalidate_borrowing_caches(book_id):
+    """
+    Invalidate caches related to borrowing a book.
+    """
