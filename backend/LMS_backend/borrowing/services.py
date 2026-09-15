@@ -1,6 +1,11 @@
 from django.db import transaction
 from django.utils import timezone
 
+from books.models import Book
+from borrowing.models import BorrowTransaction
+from books.cache import invalidate_borrowing_caches
+
+
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
@@ -43,5 +48,75 @@ def borrow_book(user, book_id, due_date):
         # Save the updated availability.
         book.save(update_fields=["available_copies"])
 
+        # Invalidate caches related to borrowing.
+        invalidate_borrowing_caches(book.id)
+
         # Invalidate caches because book availability has changed.
         cache.delete(f"book:{book.id}")
+
+        # Search results may contain the old availability.
+        keys = cache.keys("book_search:*")
+        if keys:
+            cache.delete_many(keys)
+
+        # Dashboard statistics may also have changed.
+        cache.delete("library_dashboard")
+
+        # Popular books statistics may have changed.
+        cache.delete("popular_books")
+
+        # Return the newly created transaction.
+        return borrow_transaction
+
+
+def return_book(transaction_id):
+    """
+    Handles the complete business process of returning a book.
+    """
+
+    # Start a database transaction.
+    with transaction.atomic():
+
+        # Find the borrowing transaction.
+        borrow_transaction = BorrowTransaction.objects.select_related(
+            "book"
+        ).get(id=transaction_id)
+
+        # Make sure the book has not already been returned.
+        if borrow_transaction.returned_at is not None:
+            raise ValueError("This book has already been returned.")
+
+        # Record the return time.
+        borrow_transaction.returned_at = timezone.now()
+
+        # Save the return time.
+        borrow_transaction.save(update_fields=["returned_at"])
+
+        # Get the related book.
+        book = borrow_transaction.book
+
+        # Increase the number of available copies by one.
+        book.available_copies += 1
+
+        # Save the updated availability.
+        book.save(update_fields=["available_copies"])
+
+        # Invalidate caches related to borrowing.
+        invalidate_borrowing_caches(book.id)
+
+        # Invalidate the book detail cache.
+        cache.delete(f"book:{book.id}")
+
+        # Invalidate book search caches.
+        keys = cache.keys("book_search:*")
+        if keys:
+            cache.delete_many(keys)
+
+        # Invalidate dashboard cache.
+        cache.delete("library_dashboard")
+
+        # Popular books statistics may have changed.
+        cache.delete("popular_books")
+
+        # Return the updated transaction.
+        return borrow_transaction
