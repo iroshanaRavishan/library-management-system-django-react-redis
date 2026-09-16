@@ -9,3 +9,6 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer used to display borrowing transaction information.
     """
+
+    # User is displayed as a hyperlink to the user's detail endpoint.
+    user = serializers.HyperlinkedRelatedField( )
