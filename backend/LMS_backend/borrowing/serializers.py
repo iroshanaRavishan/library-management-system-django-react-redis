@@ -19,4 +19,5 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
     # Book is displayed as a hyperlink to the book's detail endpoint.
     book = serializers.HyperlinkedRelatedField(
         read_only=True,
+        view_name="book-detail"
     )
