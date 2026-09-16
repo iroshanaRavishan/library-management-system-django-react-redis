@@ -21,3 +21,6 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True,
         view_name="book-detail"
     )
+
+    # These fields are calculated by the model.
+    is_returned = serializers.ReadOnlyField()
