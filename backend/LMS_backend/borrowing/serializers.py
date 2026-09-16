@@ -13,4 +13,5 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
     # User is displayed as a hyperlink to the user's detail endpoint.
     user = serializers.HyperlinkedRelatedField(
         read_only=True,
+        view_name="user-detail"
     )
