@@ -5,7 +5,7 @@ from books.models import Book
 from users.models import User
 
 
-class BorrowTransactionSerializer():
+class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer used to display borrowing transaction information.
     """
