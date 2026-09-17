@@ -40,3 +40,10 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
             "is_returned",
             "is_overdue",
         ]
+
+        extra_kwargs = {
+            "url": {
+                "view_name": "borrowing-detail"
+            }
+        }
+
