@@ -28,3 +28,8 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = BorrowTransaction
+
+        fields = [
+            "url",
+            "id",
+        ]
