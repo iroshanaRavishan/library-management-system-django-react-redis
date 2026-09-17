@@ -44,6 +44,9 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
         extra_kwargs = {
             "url": {
                 "view_name": "borrowing-detail"
+            },
+            "borrowed_at": {
+                "read_only": True
             }
         }
 
