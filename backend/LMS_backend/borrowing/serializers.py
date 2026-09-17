@@ -34,4 +34,9 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "user",
             "book",
+            "borrowed_at",
+            "due_date",
+            "returned_at",
+            "is_returned",
+            "is_overdue",
         ]
