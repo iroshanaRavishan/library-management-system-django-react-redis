@@ -25,3 +25,6 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
     # These fields are calculated by the model.
     is_returned = serializers.ReadOnlyField()
     is_overdue = serializers.ReadOnlyField()
+
+    class Meta:
+        model = BorrowTransaction
