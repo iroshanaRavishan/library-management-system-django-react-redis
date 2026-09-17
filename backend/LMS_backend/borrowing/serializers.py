@@ -47,6 +47,9 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
             },
             "borrowed_at": {
                 "read_only": True
-            }
+            },
+            "returned_at": {
+                "read_only": True
+            },
         }
 
