@@ -32,4 +32,6 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             "url",
             "id",
+            "user",
+            "book",
         ]
