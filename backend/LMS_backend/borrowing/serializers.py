@@ -61,3 +61,6 @@ class BorrowBookSerializer(serializers.Serializer):
 
     # ID of the book the user wants to borrow.
     book_id = serializers.IntegerField()
+
+    # Due date provided by the user.
+    due_date = serializers.DateTimeField()
