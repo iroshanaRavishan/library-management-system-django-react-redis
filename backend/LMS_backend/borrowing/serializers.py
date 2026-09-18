@@ -58,3 +58,6 @@ class BorrowBookSerializer(serializers.Serializer):
     """
     Serializer used when a user wants to borrow a book.
     """
+
+    # ID of the book the user wants to borrow.
+    book_id = serializers.IntegerField()
