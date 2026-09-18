@@ -64,3 +64,8 @@ class BorrowBookSerializer(serializers.Serializer):
 
     # Due date provided by the user.
     due_date = serializers.DateTimeField()
+
+    def validate_book_id(self, value):
+        """
+        Make sure the requested book exists.
+        """
