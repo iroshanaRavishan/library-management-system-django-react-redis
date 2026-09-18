@@ -74,3 +74,5 @@ class BorrowBookSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 "The requested book does not exist."
             )
+
+        return value
