@@ -69,3 +69,5 @@ class BorrowBookSerializer(serializers.Serializer):
         """
         Make sure the requested book exists.
         """
+
+        if not Book.objects.filter(id=value).exists():
