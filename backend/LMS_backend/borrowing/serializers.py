@@ -53,3 +53,8 @@ class BorrowTransactionSerializer(serializers.HyperlinkedModelSerializer):
             },
         }
 
+
+class BorrowBookSerializer(serializers.Serializer):
+    """
+    Serializer used when a user wants to borrow a book.
+    """
