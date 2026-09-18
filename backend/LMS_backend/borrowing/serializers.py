@@ -71,3 +71,6 @@ class BorrowBookSerializer(serializers.Serializer):
         """
 
         if not Book.objects.filter(id=value).exists():
+            raise serializers.ValidationError(
+                "The requested book does not exist."
+            )
