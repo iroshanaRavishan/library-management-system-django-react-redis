@@ -81,3 +81,5 @@ class BorrowBookSerializer(serializers.Serializer):
         """
         Make sure the due date is in the future.
         """
+
+        from django.utils import timezone
