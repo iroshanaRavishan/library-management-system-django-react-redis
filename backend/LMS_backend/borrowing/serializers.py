@@ -83,3 +83,5 @@ class BorrowBookSerializer(serializers.Serializer):
         """
 
         from django.utils import timezone
+
+        if value <= timezone.now():
