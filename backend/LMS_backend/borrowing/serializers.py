@@ -88,3 +88,5 @@ class BorrowBookSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 "Due date must be in the future."
             )
+
+        return value
