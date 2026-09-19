@@ -76,3 +76,8 @@ class BorrowBookSerializer(serializers.Serializer):
             )
 
         return value
+
+    def validate_due_date(self, value):
+        """
+        Make sure the due date is in the future.
+        """
