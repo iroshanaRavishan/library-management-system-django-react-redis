@@ -92,7 +92,7 @@ class BorrowBookSerializer(serializers.Serializer):
         return value
 
 
-class ReturnBookSerializer(serializers):
+class ReturnBookSerializer(serializers.Serializer):
     """
     Serializer used when a user wants to return a book.
     """
