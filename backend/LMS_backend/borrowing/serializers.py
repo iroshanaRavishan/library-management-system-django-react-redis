@@ -109,3 +109,6 @@ class ReturnBookSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 "The borrowing transaction does not exist."
             )
+
+        return value
+        
