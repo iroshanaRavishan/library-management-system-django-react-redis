@@ -99,3 +99,8 @@ class ReturnBookSerializer(serializers.Serializer):
 
     # ID of the borrowing transaction being returned.
     transaction_id = serializers.IntegerField()
+
+    def validate_transaction_id():
+        """
+        Make sure the borrowing transaction exists.
+        """
