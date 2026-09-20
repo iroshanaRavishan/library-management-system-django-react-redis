@@ -104,3 +104,6 @@ class ReturnBookSerializer(serializers.Serializer):
         """
         Make sure the borrowing transaction exists.
         """
+
+        if not BorrowTransaction.objects.filter(id=value):
+          
