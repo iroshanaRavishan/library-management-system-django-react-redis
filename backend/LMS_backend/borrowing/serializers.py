@@ -96,3 +96,6 @@ class ReturnBookSerializer(serializers.Serializer):
     """
     Serializer used when a user wants to return a book.
     """
+
+    # ID of the borrowing transaction being returned.
+    transaction_id = serializers.IntegerField()
