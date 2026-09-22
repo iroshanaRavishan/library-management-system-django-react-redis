@@ -24,3 +24,6 @@ class IsOwnerOrLibrarian(permissions.BasePermission):
     """
 
     def has_object_permission(self, request, view, obj):
+
+        # Librarians can access any borrowing transaction.
+        if request.user.is_staff or request.user.is_superuser:
