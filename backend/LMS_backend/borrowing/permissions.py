@@ -23,4 +23,4 @@ class IsOwnerOrLibrarian(permissions.BasePermission):
     Librarians can access all transactions.
     """
 
-    def has_object_permission(self, request):
+    def has_object_permission(self, request, view, obj):
