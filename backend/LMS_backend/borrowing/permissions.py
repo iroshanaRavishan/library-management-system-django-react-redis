@@ -22,3 +22,5 @@ class IsOwnerOrLibrarian(permissions.BasePermission):
     Allows users to access their own borrowing transactions.
     Librarians can access all transactions.
     """
+
+    def has_object_permission(self, request):
