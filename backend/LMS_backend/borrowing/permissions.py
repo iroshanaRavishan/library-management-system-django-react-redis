@@ -28,3 +28,6 @@ class IsOwnerOrLibrarian(permissions.BasePermission):
         # Librarians can access any borrowing transaction.
         if request.user.is_staff or request.user.is_superuser:
             return True
+
+        # Normal users can only access their own transactions.
+        return obj.user == request.user
