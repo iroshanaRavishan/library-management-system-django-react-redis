@@ -17,7 +17,7 @@ class IsLibrarian(permissions.BasePermission):
         )
 
 
-class IsOwnerOrLibrarian():
+class IsOwnerOrLibrarian(permissions.BasePermission):
     """
     Allows users to access their own borrowing transactions.
     Librarians can access all transactions.
