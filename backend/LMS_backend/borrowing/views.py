@@ -8,3 +8,6 @@ class BorrowBookView(APIView):
     """
     Allows an authenticated user to borrow a book.
     """
+
+    permission_classes = [IsAuthenticated]
+    
