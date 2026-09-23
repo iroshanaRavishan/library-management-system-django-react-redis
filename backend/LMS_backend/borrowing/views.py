@@ -5,7 +5,11 @@ from rest_framework.permissions import IsAuthenticated
 
 from borrowing.serializers import (BorrowBookSerializer)
 
-from borrowing.services import ( return_book)
+from borrowing.services import (
+    borrow_book,
+    return_book,
+)
+
 
 class BorrowBookView(APIView):
     """
