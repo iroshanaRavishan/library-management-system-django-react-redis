@@ -17,4 +17,4 @@ class BorrowBookView(APIView):
     def post(self, request):
 
         # Validate the request data.
-        serializer = BorrowBookSerializer(data=request)
+        serializer = BorrowBookSerializer(data=request.data)
