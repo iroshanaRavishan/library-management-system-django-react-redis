@@ -19,3 +19,7 @@ class BorrowBookView(APIView):
         # Validate the request data.
         serializer = BorrowBookSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
+        try:
+            # Call the business logic from services.py.
+            transaction = borrow_book(user=request.user)
