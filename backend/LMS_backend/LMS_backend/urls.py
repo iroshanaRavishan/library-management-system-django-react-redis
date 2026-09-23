@@ -30,4 +30,7 @@ urlpatterns = [
 
      # JWT Refresh Endpoint
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+
+    # Borrowing App
+    path("api/borrowing/", include("borrowing.urls")),
 ]
