@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
-from borrowing.serializers import (BorrowBookSerializer)
+from borrowing.serializers import ( BorrowTransactionSerializer, BorrowBookSerializer)
 
 from borrowing.services import (
     borrow_book,
