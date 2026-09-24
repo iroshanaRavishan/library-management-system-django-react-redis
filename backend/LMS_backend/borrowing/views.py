@@ -29,4 +29,5 @@ class BorrowBookView(APIView):
             transaction = borrow_book(
                 user=request.user,
                 book_id=serializer.validated_data["book_id"],
+                due_date=serializer.validated_data["due_date"],
             )
