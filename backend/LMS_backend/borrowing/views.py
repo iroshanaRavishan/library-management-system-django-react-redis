@@ -26,4 +26,7 @@ class BorrowBookView(APIView):
 
         try:
             # Call the business logic from services.py.
-            transaction = borrow_book(user=request.user)
+            transaction = borrow_book(
+                user=request.user,
+                book_id=serializer.validated_data["book_id"],
+            )
