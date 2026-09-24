@@ -31,3 +31,5 @@ class BorrowBookView(APIView):
                 book_id=serializer.validated_data["book_id"],
                 due_date=serializer.validated_data["due_date"],
             )
+
+        except ValueError as error:
