@@ -58,3 +58,6 @@ class ReturnBookView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
+
+        # Validate the request data.
+        serializer = ReturnBookSerializer(data=request.data)
