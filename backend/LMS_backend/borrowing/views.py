@@ -54,3 +54,5 @@ class ReturnBookView(APIView):
     """
     Allows an authenticated user to return a book.
     """
+
+    permission_classes = [IsAuthenticated]
