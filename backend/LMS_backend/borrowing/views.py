@@ -43,3 +43,5 @@ class BorrowBookView(APIView):
             transaction,
             context={"request": request},
         )
+
+        return Response(response_serializer.data)
