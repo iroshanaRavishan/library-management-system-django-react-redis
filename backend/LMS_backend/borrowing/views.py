@@ -37,3 +37,6 @@ class BorrowBookView(APIView):
                 {"detail": str(error)},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+        # Convert the created transaction into API response data.
+        response_serializer = BorrowTransactionSerializer()
