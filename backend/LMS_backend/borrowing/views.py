@@ -40,5 +40,6 @@ class BorrowBookView(APIView):
 
         # Convert the created transaction into API response data.
         response_serializer = BorrowTransactionSerializer(
-            transaction
+            transaction,
+            context={"request": request},
         )
