@@ -48,3 +48,9 @@ class BorrowBookView(APIView):
             response_serializer.data,
             status=status.HTTP_201_CREATED,
         )
+
+
+class ReturnBookView(APIView):
+    """
+    Allows an authenticated user to return a book.
+    """
