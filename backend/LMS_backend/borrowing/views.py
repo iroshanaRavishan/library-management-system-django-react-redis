@@ -44,4 +44,7 @@ class BorrowBookView(APIView):
             context={"request": request},
         )
 
-        return Response(response_serializer.data)
+        return Response(
+            response_serializer.data,
+            status=status.HTTP_201_CREATED,
+        )
