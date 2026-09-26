@@ -61,3 +61,4 @@ class ReturnBookView(APIView):
 
         # Validate the request data.
         serializer = ReturnBookSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
