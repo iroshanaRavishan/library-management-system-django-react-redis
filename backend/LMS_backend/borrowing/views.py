@@ -9,7 +9,10 @@ from borrowing.serializers import (
     BorrowBookSerializer,
     ReturnBookSerializer,
 )
-from borrowing.permissions import (IsOwnerOrLibrarian)
+from borrowing.permissions import (
+    IsLibrarian,
+    IsOwnerOrLibrarian,
+)
 from borrowing.services import (
     borrow_book,
     return_book,
