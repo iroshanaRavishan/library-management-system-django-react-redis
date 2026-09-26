@@ -70,3 +70,5 @@ class ReturnBookView(APIView):
         # Validate the request data.
         serializer = ReturnBookSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+
+        transaction_id = serializer.validated_data["transaction_id"]
