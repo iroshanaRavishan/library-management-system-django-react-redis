@@ -75,4 +75,6 @@ class ReturnBookView(APIView):
 
         try:
             # Find the transaction first so we can verify ownership.
-            transaction = BorrowTransaction.objects.get()
+            transaction = BorrowTransaction.objects.get(
+                id=transaction_id
+            )
