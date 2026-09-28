@@ -78,3 +78,5 @@ class ReturnBookView(APIView):
             transaction = BorrowTransaction.objects.get(
                 id=transaction_id
             )
+
+        except BorrowTransaction.DoesNotExist:
