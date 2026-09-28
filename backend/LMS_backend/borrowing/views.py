@@ -84,3 +84,7 @@ class ReturnBookView(APIView):
                 {"detail": "Borrowing transaction not found."},
                 status=status.HTTP_404_NOT_FOUND,
             )
+
+        # Normal users can only return their own transaction.
+        if ( transaction.user != request.user):
+          
