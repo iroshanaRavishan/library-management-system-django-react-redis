@@ -72,3 +72,7 @@ class ReturnBookView(APIView):
         serializer.is_valid(raise_exception=True)
 
         transaction_id = serializer.validated_data["transaction_id"]
+
+        try:
+            # Find the transaction first so we can verify ownership.
+            transaction = BorrowTransaction.objects.get()
