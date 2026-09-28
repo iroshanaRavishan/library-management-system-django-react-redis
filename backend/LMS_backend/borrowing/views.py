@@ -80,3 +80,6 @@ class ReturnBookView(APIView):
             )
 
         except BorrowTransaction.DoesNotExist:
+            return Response(
+                status=status.HTTP_404_NOT_FOUND,
+            )
