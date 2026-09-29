@@ -101,4 +101,4 @@ class ReturnBookView(APIView):
             transaction = return_book(transaction_id)
 
         except ValueError as error:
-
+            return Response(status=status.HTTP_400_BAD_REQUEST)
