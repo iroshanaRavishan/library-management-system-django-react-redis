@@ -110,3 +110,5 @@ class ReturnBookView(APIView):
             transaction,
             context={"request": request},
         )
+
+        return Response(response_serializer)
