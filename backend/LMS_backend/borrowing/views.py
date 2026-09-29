@@ -88,10 +88,17 @@ class ReturnBookView(APIView):
         # Normal users can only return their own transaction.
         if (
             transaction.user != request.user
-            and not request.user.is_staff 
+            and not request.user.is_staff
             and not request.user.is_superuser
         ):
             return Response(
                 {"detail": "You do not have permission to return this book."},
                 status=status.HTTP_403_FORBIDDEN,
             )
+
+        try:
+            # Call the business logic.
+            transaction = return_book(transaction_id)
+
+        except ValueError as error:
+
