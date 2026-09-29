@@ -111,4 +111,4 @@ class ReturnBookView(APIView):
             context={"request": request},
         )
 
-        return Response(response_serializer)
+        return Response(response_serializer.data,)
