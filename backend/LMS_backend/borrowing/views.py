@@ -91,4 +91,6 @@ class ReturnBookView(APIView):
             and not request.user.is_staff 
             and not request.user.is_superuser
         ):
-           
+            return Response(
+                {"detail": "You do not have permission to return this book."}
+            )
