@@ -92,5 +92,6 @@ class ReturnBookView(APIView):
             and not request.user.is_superuser
         ):
             return Response(
-                {"detail": "You do not have permission to return this book."}
+                {"detail": "You do not have permission to return this book."},
+                status=status.HTTP_403_FORBIDDEN,
             )
