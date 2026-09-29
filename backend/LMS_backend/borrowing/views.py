@@ -105,3 +105,5 @@ class ReturnBookView(APIView):
                 {"detail": str(error)},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+        response_serializer = BorrowTransactionSerializer(transaction)
