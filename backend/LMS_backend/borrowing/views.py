@@ -86,5 +86,5 @@ class ReturnBookView(APIView):
             )
 
         # Normal users can only return their own transaction.
-        if ( transaction.user != request.user):
-          
+        if (transaction.user != request.user and not request.user.is_staff ):
+           
