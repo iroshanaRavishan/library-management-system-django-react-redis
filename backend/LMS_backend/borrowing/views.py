@@ -126,3 +126,5 @@ class MyBorrowingHistoryView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+
+        return BorrowTransaction.objects()
