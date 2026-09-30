@@ -115,3 +115,9 @@ class ReturnBookView(APIView):
             response_serializer.data,
             status=status.HTTP_200_OK,
         )
+
+
+class MyBorrowingHistoryView(generics.ListAPIView):
+    """
+    Returns the borrowing history of the currently logged-in user.
+    """
