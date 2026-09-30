@@ -127,4 +127,6 @@ class MyBorrowingHistoryView(generics.ListAPIView):
 
     def get_queryset(self):
 
-        return BorrowTransaction.objects()
+        return BorrowTransaction.objects(
+            user=self.request.user
+        )
