@@ -121,3 +121,5 @@ class MyBorrowingHistoryView(generics.ListAPIView):
     """
     Returns the borrowing history of the currently logged-in user.
     """
+
+    serializer_class = BorrowTransactionSerializer
