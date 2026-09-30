@@ -123,3 +123,4 @@ class MyBorrowingHistoryView(generics.ListAPIView):
     """
 
     serializer_class = BorrowTransactionSerializer
+    permission_classes = [IsAuthenticated]
