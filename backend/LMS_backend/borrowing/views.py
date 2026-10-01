@@ -136,3 +136,5 @@ class BorrowingListView(generics.ListAPIView):
     """
     Allows librarians to view all borrowing transactions.
     """
+
+    queryset = BorrowTransaction.objects.all()
