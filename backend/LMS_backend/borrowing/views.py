@@ -147,3 +147,5 @@ class BorrowingDetailView(generics.RetrieveAPIView):
     Allows users to view their own transaction.
     Librarians can view any transaction.
     """
+
+    queryset = BorrowTransaction.objects.all()
