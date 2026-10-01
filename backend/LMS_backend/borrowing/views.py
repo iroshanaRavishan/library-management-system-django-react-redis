@@ -140,3 +140,10 @@ class BorrowingListView(generics.ListAPIView):
     queryset = BorrowTransaction.objects.all()
     serializer_class = BorrowTransactionSerializer
     permission_classes = [IsLibrarian]
+
+
+class BorrowingDetailView(generics.RetrieveAPIView):
+    """
+    Allows users to view their own transaction.
+    Librarians can view any transaction.
+    """
