@@ -130,3 +130,9 @@ class MyBorrowingHistoryView(generics.ListAPIView):
         return BorrowTransaction.objects.filter(
             user=self.request.user
         )
+
+
+class BorrowingListView(generics.ListAPIView):
+    """
+    Allows librarians to view all borrowing transactions.
+    """
