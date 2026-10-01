@@ -138,3 +138,4 @@ class BorrowingListView(generics.ListAPIView):
     """
 
     queryset = BorrowTransaction.objects.all()
+    serializer_class = BorrowTransactionSerializer
