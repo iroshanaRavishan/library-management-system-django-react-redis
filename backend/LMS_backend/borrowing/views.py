@@ -150,4 +150,7 @@ class BorrowingDetailView(generics.RetrieveAPIView):
 
     queryset = BorrowTransaction.objects.all()
     serializer_class = BorrowTransactionSerializer
-    permission_classes = [IsOwnerOrLibrarian]
+    permission_classes = [
+        IsAuthenticated,
+        IsOwnerOrLibrarian,
+    ]
