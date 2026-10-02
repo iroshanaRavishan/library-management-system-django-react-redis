@@ -149,3 +149,4 @@ class BorrowingDetailView(generics.RetrieveAPIView):
     """
 
     queryset = BorrowTransaction.objects.all()
+    serializer_class = BorrowTransactionSerializer
