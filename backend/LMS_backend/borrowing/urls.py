@@ -12,5 +12,11 @@ urlpatterns = [
         "borrow/",
         BorrowBookView.as_view(),
         name="borrow-book",
+    ),
+
+    path(
+        "return/",
+        ReturnBookView.as_view(),
+        name="return-book",
     )
 ]
