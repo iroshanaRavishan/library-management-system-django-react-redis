@@ -26,5 +26,11 @@ urlpatterns = [
         "my-history/",
         MyBorrowingHistoryView.as_view(),
         name="my-borrowing-history",
-    )
+    ),
+
+    path(
+        "<int:pk>/",
+        BorrowingDetailView.as_view(),
+        name="borrowing-detail",
+    ),
 ]
