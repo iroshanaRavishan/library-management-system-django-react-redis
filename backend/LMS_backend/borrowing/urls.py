@@ -19,5 +19,11 @@ urlpatterns = [
         "return/",
         ReturnBookView.as_view(),
         name="return-book",
+    ),
+
+    path(
+        "my-history/",
+        MyBorrowingHistoryView.as_view(),
+        name="my-borrowing-history",
     )
 ]
