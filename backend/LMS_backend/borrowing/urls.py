@@ -4,6 +4,7 @@ from borrowing.views import (
     BorrowBookView,
     ReturnBookView,
     MyBorrowingHistoryView,
+    BorrowingDetailView,
 )
 
 
