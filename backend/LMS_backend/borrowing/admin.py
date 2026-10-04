@@ -7,6 +7,7 @@ from .models import BorrowTransaction
 class BorrowTransactionAdmin(admin.ModelAdmin):
 
     list_display = (
+        "id",
         "user",
         "book",
         "borrowed_at",
