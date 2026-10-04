@@ -8,5 +8,8 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
 
     list_display = (
         "user",
-        "book"
+        "book",
+        "borrowed_at",
+        "due_date",
+        "returned_at"
     )
