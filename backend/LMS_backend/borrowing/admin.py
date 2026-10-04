@@ -11,5 +11,7 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
         "book",
         "borrowed_at",
         "due_date",
-        "returned_at"
+        "returned_at",
+        "is_returned",
+        "is_overdue",
     )
