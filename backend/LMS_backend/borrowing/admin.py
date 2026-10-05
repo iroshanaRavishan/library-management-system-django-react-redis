@@ -18,5 +18,6 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        "returned_at"
+        "returned_at",
+        "due_date",
     )
