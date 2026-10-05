@@ -16,3 +16,7 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
         "is_returned",
         "is_overdue",
     )
+
+    list_filter = (
+        "returned_at"
+    )
