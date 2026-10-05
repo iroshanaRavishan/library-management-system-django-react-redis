@@ -26,4 +26,5 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
         "user__username",
         "user__email",
         "book__title",
+        "book__isbn",
     )
