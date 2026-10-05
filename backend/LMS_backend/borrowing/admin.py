@@ -25,4 +25,5 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
     search_fields = (
         "user__username",
         "user__email",
+        "book__title",
     )
