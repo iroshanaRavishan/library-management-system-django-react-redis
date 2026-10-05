@@ -21,3 +21,7 @@ class BorrowTransactionAdmin(admin.ModelAdmin):
         "returned_at",
         "due_date",
     )
+
+    search_fields = (
+        "user__username"
+    )
