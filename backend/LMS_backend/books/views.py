@@ -246,3 +246,4 @@ class PopularBooksView(generics.ListAPIView):
     """
 
     serializer_class = BookSerializer
+    permission_classes = [IsLibrarianOrReadOnly]
