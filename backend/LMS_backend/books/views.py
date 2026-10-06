@@ -247,3 +247,5 @@ class PopularBooksView(generics.ListAPIView):
 
     serializer_class = BookSerializer
     permission_classes = [IsLibrarianOrReadOnly]
+
+    def get(self, request, *args, **kwargs):
