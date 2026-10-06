@@ -249,3 +249,6 @@ class PopularBooksView(generics.ListAPIView):
     permission_classes = [IsLibrarianOrReadOnly]
 
     def get(self, request, *args, **kwargs):
+
+        # Redis key for popular books.
+        cache_key = "popular_books"
