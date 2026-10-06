@@ -9,7 +9,8 @@ from .views import (
     PublisherDetailView,
     BookListView,
     BookDetailView,
-    BookSearchView
+    BookSearchView,
+    PopularBooksView,
 )
 
 
