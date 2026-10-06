@@ -237,3 +237,10 @@ class BookSearchView(generics.ListAPIView):
         )
 
         return Response(serializer.data)
+
+
+class PopularBooksView(generics.ListAPIView):
+    """
+    Returns the most borrowed books.
+    Results are cached in Redis.
+    """
