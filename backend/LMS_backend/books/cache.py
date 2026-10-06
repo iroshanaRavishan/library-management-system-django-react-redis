@@ -44,3 +44,4 @@ def invalidate_popular_books_cache():
     """
     Removes the cached popular books data.
     """
+    cache.delete("popular_books")
