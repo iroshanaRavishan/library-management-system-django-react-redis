@@ -69,6 +69,12 @@ urlpatterns = [
     ),
 
     path(
+        "books/popular/",
+        PopularBooksView.as_view(),
+        name="popular-books",
+    ),
+
+    path(
         "books/<int:pk>/",
         BookDetailView.as_view(),
         name="book-detail",
