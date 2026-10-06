@@ -244,3 +244,5 @@ class PopularBooksView(generics.ListAPIView):
     Returns the most borrowed books.
     Results are cached in Redis.
     """
+
+    serializer_class = BookSerializer
