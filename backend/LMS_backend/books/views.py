@@ -261,4 +261,6 @@ class PopularBooksView(generics.ListAPIView):
             return Response(cached_data)
 
         # Calculate the most borrowed books from the database.
-        queryset = (Book.objects.annotate())
+        queryset = (
+            Book.objects.annotate(borrow_count=Count("borrow_transactions") )
+        )
