@@ -252,3 +252,6 @@ class PopularBooksView(generics.ListAPIView):
 
         # Redis key for popular books.
         cache_key = "popular_books"
+
+        # Check Redis first.
+        cached_data = cache.get(cache_key)
