@@ -255,3 +255,6 @@ class PopularBooksView(generics.ListAPIView):
 
         # Check Redis first.
         cached_data = cache.get(cache_key)
+
+        # If data exists in Redis, return it immediately.
+        if cached_data is not None:
