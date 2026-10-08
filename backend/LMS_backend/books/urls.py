@@ -43,6 +43,12 @@ urlpatterns = [
         name="category-detail",
     ),
 
+    path(
+        "categories/<int:category_id>/books/",
+        CategoryBooksView.as_view(),
+        name="category-books",
+    ),
+
     # Publishers
     path(
         "publishers/",
