@@ -268,3 +268,8 @@ class PopularBooksView(generics.ListAPIView):
             )
             .order_by("-borrow_count", "title")[:10]
         )
+
+        # Serialize the books.
+        serializer = self.get_serializer(
+            queryset,
+        )
