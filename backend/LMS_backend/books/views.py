@@ -281,3 +281,6 @@ class PopularBooksView(generics.ListAPIView):
             serializer.data,
             timeout=60 * 30
         )
+
+        # Return the result.
+        return Response(serializer.data)
