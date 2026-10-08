@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (
+from books.views import (
     AuthorListView,
     AuthorDetailView,
     CategoryListView,
@@ -11,6 +11,7 @@ from .views import (
     BookDetailView,
     BookSearchView,
     PopularBooksView,
+    CategoryBooksView,
 )
 
 
