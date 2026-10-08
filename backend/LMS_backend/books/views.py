@@ -113,12 +113,10 @@ class BookListView(generics.ListCreateAPIView):
 
 
     def perform_create(self, serializer):
-    # create a new book and invalidate the cache for book search results
+    # Save the new book.
+        book = serializer.save()
 
-        # save the new book to the database
-        serializer.save()
-
-        # invalidate the cache for book search results
+        # Clear book search caches.
         invalidate_book_search_cache()
 
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
