@@ -11,9 +11,10 @@ from .models import (
     Book,
 )
 
-from .cache import (
+from books.cache import (
     invalidate_book_search_cache,
     invalidate_book_detail_cache,
+    invalidate_category_cache,
 )
 
 from .serializers import (
