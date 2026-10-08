@@ -276,4 +276,7 @@ class PopularBooksView(generics.ListAPIView):
         )
 
         # Store the result in Redis for 30 minutes.
-        cache.set(cache_key)
+        cache.set(
+            cache_key,
+            serializer.data
+        )
