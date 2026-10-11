@@ -180,6 +180,9 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Invalidate the old category cache.
         invalidate_category_cache(old_category_id)
 
+        # Invalidate the new category cache.
+        invalidate_category_cache(instance.category_id)
+
 
 
     def perform_destroy(self, instance):
