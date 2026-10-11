@@ -177,6 +177,10 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Invalidate search results.
         invalidate_book_search_cache()
 
+        # Invalidate the old category cache.
+        invalidate_category_cache(old_category_id)
+
+
 
     def perform_destroy(self, instance):
 
