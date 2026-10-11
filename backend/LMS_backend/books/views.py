@@ -167,11 +167,12 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Update the book in the database.
         instance = serializer.save()
 
-        # Invalidate this book's detail cache.
+        # Invalidate the individual book cache.
         invalidate_book_detail_cache(instance.id)
 
-        # Search results may also contain this book.
+        # Invalidate search results.
         invalidate_book_search_cache()
+
 
     def perform_destroy(self, instance):
 
