@@ -164,7 +164,11 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.data)
 
     def perform_update(self, serializer):
-        # Update the book in the database.
+
+        # Get the existing book before updating it.
+        old_category_id = self.get_object().category_id
+
+        # Save the updated book.
         instance = serializer.save()
 
         # Invalidate the individual book cache.
