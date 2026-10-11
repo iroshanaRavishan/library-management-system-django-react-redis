@@ -193,13 +193,13 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         # Remember the book ID.
         book_id = instance.id
 
-        # Delete the book from the database.
+        # Delete the book.
         instance.delete()
 
-        # Remove its detail cache.
+        # Invalidate book detail cache.
         invalidate_book_detail_cache(book_id)
 
-        # Remove potentially stale search results.
+        # Invalidate search caches.
         invalidate_book_search_cache()
 
         
