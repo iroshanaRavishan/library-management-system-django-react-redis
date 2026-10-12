@@ -312,3 +312,6 @@ class CategoryBooksView(generics.ListAPIView):
     Returns all books belonging to a specific category.
     Results are cached in Redis.
     """
+
+    serializer_class = BookSerializer
+   
