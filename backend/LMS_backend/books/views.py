@@ -314,4 +314,4 @@ class CategoryBooksView(generics.ListAPIView):
     """
 
     serializer_class = BookSerializer
-   
+    permission_classes = [IsLibrarianOrReadOnly]
