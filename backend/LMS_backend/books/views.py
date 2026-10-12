@@ -304,3 +304,11 @@ class PopularBooksView(generics.ListAPIView):
 
         # Return the result.
         return Response(serializer.data)
+
+
+
+class CategoryBooksView(generics.ListAPIView):
+    """
+    Returns all books belonging to a specific category.
+    Results are cached in Redis.
+    """
