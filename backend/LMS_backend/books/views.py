@@ -317,3 +317,6 @@ class CategoryBooksView(generics.ListAPIView):
     permission_classes = [IsLibrarianOrReadOnly]
 
     def get(self, request, category_id, *args, **kwargs):
+
+        # Create a unique Redis key for this category.
+        cache_key = f"category:{category_id}"
