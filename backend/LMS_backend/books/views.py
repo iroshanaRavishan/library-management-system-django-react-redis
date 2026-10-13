@@ -332,3 +332,6 @@ class CategoryBooksView(generics.ListAPIView):
         queryset = Book.objects.filter(
             category_id=category_id
         )
+
+        # Serialize the books.
+        serializer = self.get_serializer()
