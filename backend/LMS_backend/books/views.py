@@ -320,3 +320,6 @@ class CategoryBooksView(generics.ListAPIView):
 
         # Create a unique Redis key for this category.
         cache_key = f"category:{category_id}"
+
+        # Check Redis first.
+        cached_data = cache.get(cache_key)
