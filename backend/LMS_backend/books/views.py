@@ -323,3 +323,7 @@ class CategoryBooksView(generics.ListAPIView):
 
         # Check Redis first.
         cached_data = cache.get(cache_key)
+
+        # Return cached data if available.
+        if cached_data is not None:
+            return Response(cached_data)
