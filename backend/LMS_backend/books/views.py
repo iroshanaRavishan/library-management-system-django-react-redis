@@ -327,3 +327,8 @@ class CategoryBooksView(generics.ListAPIView):
         # Return cached data if available.
         if cached_data is not None:
             return Response(cached_data)
+
+        # Retrieve books belonging to this category.
+        queryset = Book.objects.filter(
+            category_id=category_id
+        )
