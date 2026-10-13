@@ -338,3 +338,6 @@ class CategoryBooksView(generics.ListAPIView):
             queryset,
             many=True
         )
+
+        # Store the result in Redis for 20 minutes.
+        cache.set(cache_key)
