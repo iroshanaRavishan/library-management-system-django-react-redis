@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "users",
     "books",
     "borrowing",
+    "dashboard"
 
     # Third-party apps
     "rest_framework",
