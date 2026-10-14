@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models import Q
+from django.db.models import Q, Count
 from rest_framework import generics
 from django.core.cache import cache
 from rest_framework.response import Response
@@ -11,9 +11,10 @@ from .models import (
     Book,
 )
 
-from .cache import (
+from books.cache import (
     invalidate_book_search_cache,
     invalidate_book_detail_cache,
+    invalidate_category_cache,
 )
 
 from .serializers import (
@@ -112,13 +113,14 @@ class BookListView(generics.ListCreateAPIView):
 
 
     def perform_create(self, serializer):
-    # create a new book and invalidate the cache for book search results
+        # Save the new book.
+        book = serializer.save()
 
-        # save the new book to the database
-        serializer.save()
-
-        # invalidate the cache for book search results
+        # Clear book search caches.
         invalidate_book_search_cache()
+
+        # Clear the cache for this book's category.
+        invalidate_category_cache(book.category_id)
 
 class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -162,28 +164,46 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(serializer.data)
 
     def perform_update(self, serializer):
-        # Update the book in the database.
+
+        # Get the existing book before updating it.
+        old_category_id = self.get_object().category_id
+
+        # Save the updated book.
         instance = serializer.save()
 
-        # Invalidate this book's detail cache.
+        # Invalidate the individual book cache.
         invalidate_book_detail_cache(instance.id)
 
-        # Search results may also contain this book.
+        # Invalidate search results.
         invalidate_book_search_cache()
+
+        # Invalidate the old category cache.
+        invalidate_category_cache(old_category_id)
+
+        # Invalidate the new category cache.
+        invalidate_category_cache(instance.category_id)
+
+
 
     def perform_destroy(self, instance):
 
-        # Get the book ID before deletion.
+        # Remember the category before deleting the book.
+        category_id = instance.category_id
+
+        # Remember the book ID.
         book_id = instance.id
 
-        # Delete the book from the database.
+        # Delete the book.
         instance.delete()
 
-        # Remove its detail cache.
+        # Invalidate book detail cache.
         invalidate_book_detail_cache(book_id)
 
-        # Remove potentially stale search results.
+        # Invalidate search caches.
         invalidate_book_search_cache()
+
+        # Invalidate category cache.
+        invalidate_category_cache(category_id)
 
         
 
@@ -236,4 +256,95 @@ class BookSearchView(generics.ListAPIView):
             timeout=60 * 10
         )
 
+        return Response(serializer.data)
+
+
+class PopularBooksView(generics.ListAPIView):
+    """
+    Returns the most borrowed books.
+    Results are cached in Redis.
+    """
+
+    serializer_class = BookSerializer
+    permission_classes = [IsLibrarianOrReadOnly]
+
+    def get(self, request, *args, **kwargs):
+
+        # Redis key for popular books.
+        cache_key = "popular_books"
+
+        # Check Redis first.
+        cached_data = cache.get(cache_key)
+
+        # If data exists in Redis, return it immediately.
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # Calculate the most borrowed books from the database.
+        queryset = (
+            Book.objects
+            .annotate(
+                borrow_count=Count("borrow_transactions")
+            )
+            .order_by("-borrow_count", "title")[:10]
+        )
+
+        # Serialize the books.
+        serializer = self.get_serializer(
+            queryset,
+            many=True
+        )
+
+        # Store the result in Redis for 30 minutes.
+        cache.set(
+            cache_key,
+            serializer.data,
+            timeout=60 * 30
+        )
+
+        # Return the result.
+        return Response(serializer.data)
+
+
+
+class CategoryBooksView(generics.ListAPIView):
+    """
+    Returns all books belonging to a specific category.
+    Results are cached in Redis.
+    """
+
+    serializer_class = BookSerializer
+    permission_classes = [IsLibrarianOrReadOnly]
+
+    def get(self, request, category_id, *args, **kwargs):
+
+        # Create a unique Redis key for this category.
+        cache_key = f"category:{category_id}"
+
+        # Check Redis first.
+        cached_data = cache.get(cache_key)
+
+        # Return cached data if available.
+        if cached_data is not None:
+            return Response(cached_data)
+
+        # Retrieve books belonging to this category.
+        queryset = Book.objects.filter(
+            category_id=category_id
+        )
+
+        # Serialize the books.
+        serializer = self.get_serializer(
+            queryset,
+            many=True
+        )
+
+        # Store the result in Redis for 20 minutes.
+        cache.set(
+            cache_key,
+            serializer.data,
+            timeout=60 * 20
+        )
+
+        # Return the response.
         return Response(serializer.data)
