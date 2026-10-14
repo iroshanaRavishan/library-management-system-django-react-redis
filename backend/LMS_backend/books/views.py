@@ -345,3 +345,6 @@ class CategoryBooksView(generics.ListAPIView):
             serializer.data,
             timeout=60 * 20
         )
+
+        # Return the response.
+        return Response(serializer.data)
