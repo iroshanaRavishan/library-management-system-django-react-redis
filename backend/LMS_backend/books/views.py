@@ -342,5 +342,6 @@ class CategoryBooksView(generics.ListAPIView):
         # Store the result in Redis for 20 minutes.
         cache.set(
             cache_key,
-            serializer.data
+            serializer.data,
+            timeout=60 * 20
         )
