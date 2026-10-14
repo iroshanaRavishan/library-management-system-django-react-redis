@@ -33,7 +33,4 @@ urlpatterns = [
 
     # Borrowing App
     path("api/borrowing/", include("borrowing.urls")),
-
-    # Dashboard App
-    path("api/dashboard/", include("dashboard.urls")),
 ]
