@@ -7,3 +7,6 @@ class DashboardSerializer(serializers.Serializer):
 
     # Total copies that are currently available.
     available_copies = serializers.IntegerField()
+
+    # Total registered user accounts.
+    total_members = serializers.IntegerField()
