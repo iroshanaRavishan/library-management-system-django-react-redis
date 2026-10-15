@@ -13,3 +13,6 @@ class DashboardSerializer(serializers.Serializer):
 
     # Number of transactions that have not been returned.
     currently_borrowed = serializers.IntegerField()
+
+    # Transactions created today.
+    borrowed_today = serializers.IntegerField()
