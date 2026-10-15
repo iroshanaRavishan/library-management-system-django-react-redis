@@ -10,3 +10,6 @@ class DashboardSerializer(serializers.Serializer):
 
     # Total registered user accounts.
     total_members = serializers.IntegerField()
+
+    # Number of transactions that have not been returned.
+    currently_borrowed = serializers.IntegerField()
