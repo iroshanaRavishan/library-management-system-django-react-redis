@@ -19,3 +19,9 @@ class DashboardSerializer(serializers.Serializer):
 
     # Transactions returned today.
     returned_today = serializers.IntegerField()
+
+    # Transactions that are overdue and not yet returned.
+    overdue_transactions = serializers.IntegerField()
+
+    # Top five most borrowed books.
+    popular_books = serializers.ListField()
