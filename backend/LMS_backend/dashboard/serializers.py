@@ -16,3 +16,6 @@ class DashboardSerializer(serializers.Serializer):
 
     # Transactions created today.
     borrowed_today = serializers.IntegerField()
+
+    # Transactions returned today.
+    returned_today = serializers.IntegerField()
