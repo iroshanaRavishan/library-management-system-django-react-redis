@@ -5,3 +5,8 @@ from django.db.models import Count
 from django.utils import timezone
 
 from rest_framework import serializers
+
+class DashboardView(APIView):
+    """
+    Returns library statistics, cached in Redis for five minutes.
+    """
