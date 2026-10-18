@@ -12,3 +12,5 @@ class DashboardView(APIView):
     """
     Returns library statistics, cached in Redis for five minutes.
     """
+
+    permission_classes = [IsAuthenticated]
