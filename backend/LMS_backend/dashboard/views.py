@@ -16,3 +16,5 @@ class DashboardView(APIView):
     """
 
     permission_classes = [IsAuthenticated]
+
+    def get(self, request):
