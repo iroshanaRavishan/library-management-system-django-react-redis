@@ -18,3 +18,6 @@ class DashboardView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+
+        # Return cached dashboard data when available.
+        cache_key = "library_dashboard"
