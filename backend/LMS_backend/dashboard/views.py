@@ -30,4 +30,8 @@ class DashboardView(APIView):
         cached_data = cache.get(cache_key)
 
         if cached_data is not None:
+            return Response(cached_data)
+
+            return Response(cached_data)
+
         
