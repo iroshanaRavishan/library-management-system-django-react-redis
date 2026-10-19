@@ -37,4 +37,4 @@ class DashboardView(APIView):
         today_start = now.replace(
             hour=0, minute=0, second=0, microsecond=0
         )
-      
+        tomorrow_start = today_start + timedelta(days=1)
