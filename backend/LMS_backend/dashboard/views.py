@@ -38,3 +38,7 @@ class DashboardView(APIView):
             hour=0, minute=0, second=0, microsecond=0
         )
         tomorrow_start = today_start + timedelta(days=1)
+
+        # Count total books and available copies.
+        total_books = Book.objects.count()
+       
