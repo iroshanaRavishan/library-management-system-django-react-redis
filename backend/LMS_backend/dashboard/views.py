@@ -27,3 +27,4 @@ class DashboardView(APIView):
 
         # Return cached dashboard data when available.
         cache_key = "library_dashboard"
+        cached_data = cache.get(cache_key)
