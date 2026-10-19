@@ -34,5 +34,7 @@ class DashboardView(APIView):
 
         # Use the current Django timezone.
         now = timezone.localtime()
-        today_start = now.replace()
+        today_start = now.replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
       
