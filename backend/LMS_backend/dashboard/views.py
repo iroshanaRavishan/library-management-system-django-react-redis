@@ -32,6 +32,7 @@ class DashboardView(APIView):
         if cached_data is not None:
             return Response(cached_data)
 
-            return Response(cached_data)
-
-        
+        # Use the current Django timezone.
+        now = timezone.localtime()
+        today_start = now.replace()
+      
