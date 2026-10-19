@@ -11,6 +11,9 @@ from rest_framework.views import APIView
 
 from books.models import Book
 from borrowing.models import BorrowTransaction
+from users.models import User
+
+from dashboard.serializers import DashboardSerializer
 
 
 class DashboardView(APIView):
