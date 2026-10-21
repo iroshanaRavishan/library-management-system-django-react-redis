@@ -51,4 +51,6 @@ class DashboardView(APIView):
         total_members = User.objects.count()
 
         # Count transactions that are still active.
-        active_transactions = BorrowTransaction.objects.filter()
+        active_transactions = BorrowTransaction.objects.filter(
+            returned_at__isnull=True
+        )
