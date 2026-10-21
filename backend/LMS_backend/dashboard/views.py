@@ -59,4 +59,5 @@ class DashboardView(APIView):
         # Count transactions created today.
         borrowed_today = BorrowTransaction.objects.filter(
             borrowed_at__gte=today_start,
+            borrowed_at__lt=tomorrow_start,
         )
