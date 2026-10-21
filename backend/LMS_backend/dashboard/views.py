@@ -49,3 +49,6 @@ class DashboardView(APIView):
         # If your project distinguishes members from librarians,
         # filter by your actual User.role field here.
         total_members = User.objects.count()
+
+        # Count transactions that are still active.
+        active_transactions = BorrowTransaction.objects.filter()
