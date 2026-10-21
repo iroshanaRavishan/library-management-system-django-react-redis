@@ -54,3 +54,4 @@ class DashboardView(APIView):
         active_transactions = BorrowTransaction.objects.filter(
             returned_at__isnull=True
         )
+        currently_borrowed = active_transactions.count()
