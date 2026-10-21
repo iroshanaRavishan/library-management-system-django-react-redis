@@ -44,3 +44,8 @@ class DashboardView(APIView):
         available_copies = sum(
             Book.objects.values_list("available_copies", flat=True)
         )
+
+        # Count registered users.
+        # If your project distinguishes members from librarians,
+        # filter by your actual User.role field here.
+        total_members = User.objects.count()
