@@ -41,4 +41,6 @@ class DashboardView(APIView):
 
         # Count total books and available copies.
         total_books = Book.objects.count()
-        available_copies = sum()
+        available_copies = sum(
+            Book.objects.values_list("available_copies", flat=True)
+        )
