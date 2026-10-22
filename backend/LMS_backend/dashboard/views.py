@@ -69,4 +69,6 @@ class DashboardView(APIView):
         ).count()
 
         # Count transactions that are overdue and not returned.
-        overdue_transactions = active_transactions.filter().count()
+        overdue_transactions = active_transactions.filter(
+            due_date__lt=timezone.now()
+        ).count()
