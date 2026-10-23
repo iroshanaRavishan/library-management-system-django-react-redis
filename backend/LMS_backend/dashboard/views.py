@@ -75,5 +75,5 @@ class DashboardView(APIView):
 
         # Calculate the five most borrowed books.
         popular_books_queryset = (
-            .order_by("-borrow_count", "title")
+            .order_by("-borrow_count", "title")[:5]
         )
