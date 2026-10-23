@@ -72,3 +72,6 @@ class DashboardView(APIView):
         overdue_transactions = active_transactions.filter(
             due_date__lt=timezone.now()
         ).count()
+
+        # Calculate the five most borrowed books.
+        popular_books_queryset = ()
