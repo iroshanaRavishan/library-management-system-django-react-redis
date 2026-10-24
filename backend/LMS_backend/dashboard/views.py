@@ -81,4 +81,6 @@ class DashboardView(APIView):
             .order_by("-borrow_count", "title")[:5]
         )
 
-        popular_books = []
+        popular_books = [
+            { "id": book.id }
+        ]
