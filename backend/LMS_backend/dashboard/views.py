@@ -82,5 +82,8 @@ class DashboardView(APIView):
         )
 
         popular_books = [
-            { "id": book.id }
+            {
+                "id": book.id,
+                "title": book.title,
+            }
         ]
