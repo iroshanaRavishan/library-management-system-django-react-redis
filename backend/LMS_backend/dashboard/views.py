@@ -85,5 +85,6 @@ class DashboardView(APIView):
             {
                 "id": book.id,
                 "title": book.title,
+                "borrow_count": book.borrow_count,
             }
         ]
