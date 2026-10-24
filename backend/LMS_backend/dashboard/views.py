@@ -87,4 +87,5 @@ class DashboardView(APIView):
                 "title": book.title,
                 "borrow_count": book.borrow_count,
             }
+            for book in popular_books_queryset
         ]
