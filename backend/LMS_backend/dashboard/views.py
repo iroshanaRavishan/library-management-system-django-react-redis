@@ -89,3 +89,6 @@ class DashboardView(APIView):
             }
             for book in popular_books_queryset
         ]
+
+        # Cache the complete dashboard for five minutes.
+        cache.set(cache_key, serializer.validated_data, timeout=60 * 5)
