@@ -94,6 +94,8 @@ class DashboardView(APIView):
         data = {
             "total_books": total_books,
             "available_copies": available_copies,
+            "total_members": total_members,
+            "currently_borrowed": currently_borrowed,
             "returned_today": returned_today,
             "overdue_transactions": overdue_transactions,
             "popular_books": popular_books,
