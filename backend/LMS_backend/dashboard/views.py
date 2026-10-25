@@ -91,4 +91,7 @@ class DashboardView(APIView):
         ]
 
         # Build the dashboard response.
-        data = { "total_books": total_books }
+        data = {
+            "total_books": total_books,
+            "available_copies": available_copies
+        }
