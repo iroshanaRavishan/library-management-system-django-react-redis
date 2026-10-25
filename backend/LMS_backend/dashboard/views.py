@@ -96,4 +96,5 @@ class DashboardView(APIView):
             "available_copies": available_copies,
             "returned_today": returned_today,
             "overdue_transactions": overdue_transactions,
+            "popular_books": popular_books,
         }
