@@ -104,3 +104,4 @@ class DashboardView(APIView):
 
         # Validate the response structure.
         serializer = DashboardSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
