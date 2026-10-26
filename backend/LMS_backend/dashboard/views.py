@@ -105,3 +105,6 @@ class DashboardView(APIView):
         # Validate the response structure.
         serializer = DashboardSerializer(data=data)
         serializer.is_valid(raise_exception=True)
+
+        # Cache the complete dashboard for five minutes.
+        cache.set(cache_key, serializer.validated_data, timeout=60 * 5)
