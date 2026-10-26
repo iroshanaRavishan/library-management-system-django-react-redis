@@ -108,3 +108,7 @@ class DashboardView(APIView):
 
         # Cache the complete dashboard for five minutes.
         cache.set(cache_key, serializer.validated_data, timeout=60 * 5)
+
+        return Response(serializer.validated_data)
+
+
