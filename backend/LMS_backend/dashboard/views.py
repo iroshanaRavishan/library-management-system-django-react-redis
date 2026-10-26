@@ -96,6 +96,7 @@ class DashboardView(APIView):
             "available_copies": available_copies,
             "total_members": total_members,
             "currently_borrowed": currently_borrowed,
+            "borrowed_today": borrowed_today,
             "returned_today": returned_today,
             "overdue_transactions": overdue_transactions,
             "popular_books": popular_books,
