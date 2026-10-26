@@ -101,3 +101,6 @@ class DashboardView(APIView):
             "overdue_transactions": overdue_transactions,
             "popular_books": popular_books,
         }
+
+        # Validate the response structure.
+        serializer = DashboardSerializer(data=data)
