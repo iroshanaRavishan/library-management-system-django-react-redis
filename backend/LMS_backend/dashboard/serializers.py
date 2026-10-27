@@ -24,4 +24,4 @@ class DashboardSerializer(serializers.Serializer):
     overdue_transactions = serializers.IntegerField()
 
     # Top five most borrowed books.
-    popular_books = serializers.ListField()
+    popular_books = PopularBookSerializer(many=True)
