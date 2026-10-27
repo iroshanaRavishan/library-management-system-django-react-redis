@@ -50,8 +50,6 @@ class DashboardView(APIView):
         available_copies = book_statistics["available_copies"] or 0
 
         # Count registered users.
-        # If your project distinguishes members from librarians,
-        # filter by your actual User.role field here.
         total_members = User.objects.count()
 
         # Count transactions that are still active.
