@@ -41,10 +41,13 @@ class DashboardView(APIView):
         tomorrow_start = today_start + timedelta(days=1)
 
         # Count total books and available copies.
-        total_books = Book.objects.count()
-        available_copies = sum(
-            Book.objects.values_list("available_copies", flat=True)
+        book_statistics = Book.objects.aggregate(
+            total_books=Count("id"),
+            available_copies=Sum("available_copies"),
         )
+
+        total_books = book_statistics["total_books"]
+        available_copies = book_statistics["available_copies"] or 0
 
         # Count registered users.
         # If your project distinguishes members from librarians,
