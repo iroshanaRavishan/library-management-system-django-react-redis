@@ -16,6 +16,11 @@ from users.models import User
 
 from dashboard.serializers import DashboardSerializer
 
+from dashboard.cache_keys import (
+    DASHBOARD_CACHE_KEY,
+    DASHBOARD_CACHE_TIMEOUT,
+)
+
 
 class DashboardView(APIView):
     """
