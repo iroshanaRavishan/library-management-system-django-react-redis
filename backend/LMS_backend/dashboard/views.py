@@ -27,8 +27,7 @@ class DashboardView(APIView):
     def get(self, request):
 
         # Return cached dashboard data when available.
-        cache_key = "library_dashboard"
-        cached_data = cache.get(cache_key)
+        cached_data = cache.get(DASHBOARD_CACHE_KEY)
 
         if cached_data is not None:
             return Response(cached_data)
