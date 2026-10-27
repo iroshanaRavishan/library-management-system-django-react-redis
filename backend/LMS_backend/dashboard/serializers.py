@@ -1,6 +1,10 @@
 from rest_framework import serializers
 
 
+# Serializer for individual popular book entries.
+class PopularBookSerializer(serializers.Serializer):
+
+
 class DashboardSerializer(serializers.Serializer):
     # Total number of book records in the library.
     total_books = serializers.IntegerField()
