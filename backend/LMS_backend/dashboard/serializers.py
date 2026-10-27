@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 # Serializer for individual popular book entries.
 class PopularBookSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
 
 
 class DashboardSerializer(serializers.Serializer):
