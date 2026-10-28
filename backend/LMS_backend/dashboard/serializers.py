@@ -5,6 +5,7 @@ from rest_framework import serializers
 class PopularBookSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     title = serializers.CharField()
+    borrow_count = serializers.IntegerField()
 
 
 class DashboardSerializer(serializers.Serializer):
