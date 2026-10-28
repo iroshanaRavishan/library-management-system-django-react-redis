@@ -10,3 +10,4 @@ def invalidate_dashboard_cache():
     The next dashboard request will calculate
     fresh statistics and cache them again.
     """
+    cache.delete(DASHBOARD_CACHE_KEY)
