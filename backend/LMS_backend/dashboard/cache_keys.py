@@ -1,0 +1,2 @@
+DASHBOARD_CACHE_KEY = "library_dashboard"
+DASHBOARD_CACHE_TIMEOUT = 60 * 5
