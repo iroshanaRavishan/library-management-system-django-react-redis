@@ -5,6 +5,7 @@ from django.utils import timezone
 from books.models import Book
 from borrowing.models import BorrowTransaction
 from books.cache import invalidate_borrowing_caches
+from dashboard.services import invalidate_dashboard_cache
 
 
 def borrow_book(user, book_id, due_date):
