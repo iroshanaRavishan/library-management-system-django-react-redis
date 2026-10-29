@@ -12,7 +12,8 @@ def invalidate_after_borrowing(book_id):
     """
     Invalidate caches affected by borrowing or returning a book.
     """
-    
+    invalidate_borrowing_caches(book_id)
+
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
