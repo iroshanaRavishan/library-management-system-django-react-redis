@@ -8,6 +8,11 @@ from books.cache import invalidate_borrowing_caches
 from dashboard.services import invalidate_dashboard_cache
 
 
+def invalidate_after_borrowing(book_id):
+    """
+    Invalidate caches affected by borrowing or returning a book.
+    """
+    
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
