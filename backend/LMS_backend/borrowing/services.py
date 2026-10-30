@@ -33,8 +33,6 @@ def borrow_book(user, book_id, due_date):
     Handles the complete business process of borrowing a book.
     """
 
-    # Start a database transaction so all database changes
-    # succeed together or are rolled back together.
     with transaction.atomic():
 
         # Get the book from the database.
