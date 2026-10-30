@@ -38,7 +38,7 @@ def borrow_book(user, book_id, due_date):
         # Get the book from the database.
         book = Book.objects.get(id=book_id)
 
-        # Check whether the book has any available copies.
+        # Check whether the book has available copies.
         if book.available_copies <= 0:
             raise ValueError("No copies of this book are currently available.")
 
