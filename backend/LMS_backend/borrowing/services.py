@@ -24,6 +24,10 @@ def invalidate_after_borrowing(book_id):
     # Invalidate popular books statistics.
     cache.delete("popular_books")
 
+    # Invalidate dashboard statistics.
+    invalidate_dashboard_cache()
+
+
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
