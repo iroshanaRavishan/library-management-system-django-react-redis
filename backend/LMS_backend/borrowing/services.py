@@ -44,8 +44,7 @@ def borrow_book(user, book_id, due_date):
                 "No copies of this book are currently available."
             )
 
-        # Check whether this user already has an active borrowing
-        # transaction for the same book.
+        # Check whether the user already has an active borrowing.
         already_borrowed = BorrowTransaction.objects.filter(
             user=user,
             book=book,
