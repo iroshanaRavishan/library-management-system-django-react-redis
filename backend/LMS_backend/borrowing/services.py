@@ -93,7 +93,6 @@ def return_book(transaction_id):
     Handles the complete business process of returning a book.
     """
 
-    # Start a database transaction.
     with transaction.atomic():
 
         # Find the borrowing transaction.
