@@ -60,7 +60,7 @@ def borrow_book(user, book_id, due_date):
         borrow_transaction = BorrowTransaction.objects.create(
             user=user,
             book=book,
-            due_date=due_date
+            due_date=due_date,
         )
 
         # Decrease the number of available copies by one.
