@@ -63,7 +63,7 @@ def borrow_book(user, book_id, due_date):
             due_date=due_date,
         )
 
-        # Decrease the number of available copies by one.
+        # Decrease available copies.
         book.available_copies -= 1
 
         # Save the updated availability.
