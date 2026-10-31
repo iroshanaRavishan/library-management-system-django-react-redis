@@ -52,7 +52,9 @@ def borrow_book(user, book_id, due_date):
         ).exists()
 
         if already_borrowed:
-            raise ValueError("You have already borrowed this book.")
+            raise ValueError(
+                "You have already borrowed this book."
+            )
 
         # Create the borrowing transaction.
         borrow_transaction = BorrowTransaction.objects.create(
