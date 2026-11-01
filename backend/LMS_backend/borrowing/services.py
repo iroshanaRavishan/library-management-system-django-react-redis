@@ -104,8 +104,6 @@ def return_book(transaction_id):
 
         # Increase available copies.
         book.available_copies += 1
-
-        # Save the updated availability.
         book.save(update_fields=["available_copies"])
 
         # Invalidate caches related to borrowing.
