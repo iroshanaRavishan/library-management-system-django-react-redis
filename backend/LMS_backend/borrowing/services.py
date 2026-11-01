@@ -102,7 +102,7 @@ def return_book(transaction_id):
         # Get the related book.
         book = borrow_transaction.book
 
-        # Increase the number of available copies by one.
+        # Increase available copies.
         book.available_copies += 1
 
         # Save the updated availability.
