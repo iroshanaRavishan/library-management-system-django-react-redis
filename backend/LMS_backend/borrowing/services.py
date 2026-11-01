@@ -97,8 +97,6 @@ def return_book(transaction_id):
 
         # Record the return time.
         borrow_transaction.returned_at = timezone.now()
-
-        # Save the return time.
         borrow_transaction.save(update_fields=["returned_at"])
 
         # Get the related book.
