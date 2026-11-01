@@ -91,7 +91,9 @@ def return_book(transaction_id):
 
         # Prevent returning the same book twice.
         if borrow_transaction.returned_at is not None:
-            raise ValueError("This book has already been returned.")
+            raise ValueError(
+                "This book has already been returned."
+            )
 
         # Record the return time.
         borrow_transaction.returned_at = timezone.now()
