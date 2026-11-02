@@ -58,23 +58,7 @@ def borrow_book(user, book_id, due_date):
                 "You have already borrowed this book."
             )
 
-        # Create the borrowing transaction.
-        borrow_transaction = BorrowTransaction.objects.create(
-            user=user,
-            book=book,
-            due_date=due_date,
-        )
-
-        # Decrease available copies.
-        book.available_copies -= 1
-        book.save(update_fields=["available_copies"])
-
-        # Invalidate affected caches after the transaction commits.
-        transaction.on_commit(
-            lambda book_id=book.id: invalidate_after_borrowing(book_id)
-        )
-
-        return borrow_transaction
+        raise
 
 
 def return_book(transaction_id):
