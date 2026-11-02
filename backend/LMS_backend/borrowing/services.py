@@ -49,7 +49,7 @@ def borrow_book(user, book_id, due_date):
         # Check whether the user already has an active borrowing.
         already_borrowed = BorrowTransaction.objects.filter(
             user=user,
-            book=book,
+            book_id=book_id,
             returned_at__isnull=True,
         ).exists()
 
