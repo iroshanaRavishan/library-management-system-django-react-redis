@@ -106,22 +106,9 @@ def return_book(transaction_id):
         book.available_copies += 1
         book.save(update_fields=["available_copies"])
 
-        # Invalidate caches related to borrowing.
-        invalidate_borrowing_caches(book.id)
+        # Invalidate affected caches after the transaction commits.
+        transaction.on_commit(
+            lambda book_id=book.id: invalidate_after_borrowing(book_id)
+        )
 
-        # Invalidate the book detail cache.
-        cache.delete(f"book:{book.id}")
-
-        # Invalidate book search caches.
-        keys = cache.keys("book_search:*")
-        if keys:
-            cache.delete_many(keys)
-
-        # Invalidate dashboard cache.
-        cache.delete("library_dashboard")
-
-        # Popular books statistics may have changed.
-        cache.delete("popular_books")
-
-        # Return the updated transaction.
         return borrow_transaction
