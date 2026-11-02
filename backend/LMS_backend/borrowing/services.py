@@ -95,7 +95,9 @@ def return_book(transaction_id):
 
         # Invalidate affected caches after the transaction commits.
         transaction.on_commit(
-            lambda book_id=book.id: invalidate_after_borrowing(book_id)
+            lambda book_id=book_id:
+                invalidate_after_borrowing(book_id)
         )
 
         return borrow_transaction
+        
