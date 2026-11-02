@@ -31,6 +31,7 @@ def invalidate_after_borrowing(book_id):
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
+    Uses conditional database updates to prevent negative availability.
     """
 
     with transaction.atomic():
