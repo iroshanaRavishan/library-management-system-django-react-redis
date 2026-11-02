@@ -99,5 +99,8 @@ def return_book(transaction_id):
                 invalidate_after_borrowing(book_id)
         )
 
+        # Refresh the object to include the updated return time.
+        borrow_transaction.refresh_from_db()
+
         return borrow_transaction
         
