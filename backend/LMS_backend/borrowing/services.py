@@ -34,7 +34,8 @@ def borrow_book(user, book_id, due_date):
     Uses conditional database updates to prevent negative availability.
     """
 
-    with transaction.atomic():
+    try:
+        with transaction.atomic():
 
         # Get the book from the database.
         book = Book.objects.get(id=book_id)
