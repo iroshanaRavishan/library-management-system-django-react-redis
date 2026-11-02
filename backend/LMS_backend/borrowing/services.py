@@ -64,6 +64,7 @@ def borrow_book(user, book_id, due_date):
 def return_book(transaction_id):
     """
     Handles the complete business process of returning a book.
+    Prevents the same transaction from being returned twice.
     """
 
     with transaction.atomic():
