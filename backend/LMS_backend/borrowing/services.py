@@ -93,7 +93,7 @@ def return_book(transaction_id):
         book.available_copies += 1
         book.save(update_fields=["available_copies"])
 
-        # Invalidate affected caches after the transaction commits.
+        # Invalidate affected caches after successful commit.
         transaction.on_commit(
             lambda book_id=book_id:
                 invalidate_after_borrowing(book_id)
