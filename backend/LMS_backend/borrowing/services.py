@@ -86,7 +86,7 @@ def return_book(transaction_id):
         updated_books = Book.objects.filter(
             id=book_id
         ).update(
-            available_copies=F("available_copies")
+            available_copies=F("available_copies") + 1
         )
 
         if updated_books == 0:
