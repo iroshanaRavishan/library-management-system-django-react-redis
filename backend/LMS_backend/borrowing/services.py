@@ -82,6 +82,8 @@ def return_book(transaction_id):
                 "This book has already been returned."
             )
 
+        # Increase available copies only when below total copies.
+        updated_books = Book.objects.filter()
 
         if updated_books == 0:
             raise ValueError(
