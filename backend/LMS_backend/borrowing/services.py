@@ -86,12 +86,8 @@ def return_book(transaction_id):
         borrow_transaction.returned_at = timezone.now()
         borrow_transaction.save(update_fields=["returned_at"])
 
-        # Get the related book.
-        book = borrow_transaction.book
-
-        # Increase available copies.
-        book.available_copies += 1
-        book.save(update_fields=["available_copies"])
+        # Get the related books == 0:
+            raise ValueError()
 
         # Invalidate affected caches after successful commit.
         transaction.on_commit(
