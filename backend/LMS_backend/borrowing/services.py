@@ -82,12 +82,12 @@ def return_book(transaction_id):
                 "This book has already been returned."
             )
 
-        # Record the return time.
-        borrow_transaction.returned_at = timezone.now()
-        borrow_transaction.save(update_fields=["returned_at"])
 
-        # Get the related books == 0:
-            raise ValueError()
+        if updated_books == 0:
+            raise ValueError(
+                "Book availability is inconsistent. "
+                "Please contact the librarian."
+            )
 
         # Invalidate affected caches after successful commit.
         transaction.on_commit(
