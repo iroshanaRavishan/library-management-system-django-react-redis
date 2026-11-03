@@ -85,6 +85,8 @@ def return_book(transaction_id):
         # Increase available copies only when below total copies.
         updated_books = Book.objects.filter(
             id=book_id
+        ).update(
+            available_copies=F("available_copies")
         )
 
         if updated_books == 0:
