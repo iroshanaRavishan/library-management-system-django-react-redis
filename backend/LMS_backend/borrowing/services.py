@@ -82,7 +82,7 @@ def return_book(transaction_id):
         updated_rows = BorrowTransaction.objects.filter(
             id=transaction_id,
             returned_at__isnull=True,
-        )
+        ).update()
 
         if updated_rows == 0:
             raise ValueError(
