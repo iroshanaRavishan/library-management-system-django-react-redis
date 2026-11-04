@@ -76,6 +76,8 @@ def return_book(transaction_id):
             id=transaction_id
         )
 
+
+        if updated_rows == 0:
             raise ValueError(
                 "This book has already been returned."
             )
