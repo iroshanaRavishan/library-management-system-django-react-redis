@@ -2,6 +2,8 @@ from django.core.cache import cache
 from django.db import transaction, IntegrityError
 from django.utils import timezone
 
+from django.db.models import F
+
 from books.models import Book
 from borrowing.models import BorrowTransaction
 from books.cache import invalidate_borrowing_caches
