@@ -77,7 +77,10 @@ def return_book(transaction_id):
         )
 
         book_id = borrow_transaction.book_id
-        
+
+        # Update only if the transaction has not already been returned.
+        updated_rows = BorrowTransaction.objects.filter(id=transaction_id)
+
         if updated_rows == 0:
             raise ValueError(
                 "This book has already been returned."
