@@ -72,10 +72,8 @@ def return_book(transaction_id):
     with transaction.atomic():
 
         # Find the borrowing transaction.
-        borrow_transaction = (
-            BorrowTransaction.objects
-            .select_related("book")
-            .get(id=transaction_id)
+        borrow_transaction = BorrowTransaction.objects.get(
+            id=transaction_id
         )
 
         # Prevent returning the same book twice.
