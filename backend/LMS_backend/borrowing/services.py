@@ -48,7 +48,8 @@ def borrow_book(user, book_id, due_date):
             # Prevent duplicate active borrowing.
             already_borrowed = BorrowTransaction.objects.filter(
                 user=user,
-                book_id=book_id
+                book_id=book_id,
+                returned_at__isnull=True,
             ).exists()
 
             if updated_rows == 0:
