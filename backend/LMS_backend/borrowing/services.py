@@ -42,7 +42,9 @@ def borrow_book(user, book_id, due_date):
             # Check whether the book exists.
             book_exists = Book.objects.filter(id=book_id).exists()
 
-        # Check whether the book has available copies.
+            if not book_exists:
+                raise ValueError("Book not found.")
+
         if book.available_copies <= 0:
             raise ValueError(
                 "No copies of this book are currently available."
