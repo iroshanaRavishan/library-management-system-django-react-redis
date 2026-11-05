@@ -40,7 +40,7 @@ def borrow_book(user, book_id, due_date):
         with transaction.atomic():
 
             # Check whether the book exists.
-            book_exists = Book.objects.filter(id=book_id)
+            book_exists = Book.objects.filter(id=book_id).exists()
 
         # Check whether the book has available copies.
         if book.available_copies <= 0:
