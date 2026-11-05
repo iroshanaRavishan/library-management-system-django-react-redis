@@ -46,7 +46,9 @@ def borrow_book(user, book_id, due_date):
                 raise ValueError("Book not found.")
 
             # Prevent duplicate active borrowing.
-            already_borrowed = BorrowTransaction.objects.exists()
+            already_borrowed = BorrowTransaction.objects.filter(
+                user=user
+            ).exists()
 
             if updated_rows == 0:
                 raise ValueError(
