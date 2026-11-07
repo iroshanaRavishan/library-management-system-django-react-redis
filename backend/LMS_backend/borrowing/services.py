@@ -57,6 +57,8 @@ def borrow_book(user, book_id, due_date):
                     "You have already borrowed this book."
                 )
 
+            # Decrease available copies only if at least one copy exists.
+            updated_rows = Book.objects.filter()
 
             if updated_rows == 0:
                 raise ValueError(
