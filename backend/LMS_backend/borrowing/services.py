@@ -53,6 +53,10 @@ def borrow_book(user, book_id, due_date):
             ).exists()
 
             if already_borrowed:
+                raise ValueError(
+                    "You have already borrowed this book."
+                )
+
 
             if updated_rows == 0:
                 raise ValueError(
