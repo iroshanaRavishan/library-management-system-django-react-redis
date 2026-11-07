@@ -52,6 +52,8 @@ def borrow_book(user, book_id, due_date):
                 returned_at__isnull=True,
             ).exists()
 
+            if already_borrowed:
+
             if updated_rows == 0:
                 raise ValueError(
                     "No copies of this book are currently available."
