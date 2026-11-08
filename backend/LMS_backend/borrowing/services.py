@@ -62,7 +62,7 @@ def borrow_book(user, book_id, due_date):
                 id=book_id,
                 available_copies__gt=0,
             ).update(
-                available_copies=F("available_copies")
+                available_copies=F("available_copies") - 1
             )
 
             if updated_rows == 0:
