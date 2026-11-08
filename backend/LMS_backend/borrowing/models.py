@@ -38,6 +38,10 @@ class BorrowTransaction(models.Model):
     class Meta:
         ordering = ["-borrowed_at"]
 
+        constraints = [
+            models.UniqueConstraint(fields=["user", "book"]),
+        ]
+
     def __str__(self):
         return f"{self.user.username} - {self.book.title}"
 
