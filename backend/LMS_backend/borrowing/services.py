@@ -70,6 +70,9 @@ def borrow_book(user, book_id, due_date):
                     "No copies of this book are currently available."
                 )
 
+            # Create the borrowing transaction.
+            borrow_transaction = BorrowTransaction.objects.create(user=user)
+=
 
     except IntegrityError:
         # The database-level unique constraint protects against
