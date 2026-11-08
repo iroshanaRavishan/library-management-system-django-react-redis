@@ -39,7 +39,9 @@ class BorrowTransaction(models.Model):
         ordering = ["-borrowed_at"]
 
         constraints = [
-            models.UniqueConstraint(fields=["user", "book"]),
+            models.UniqueConstraint(
+                fields=["user", "book"]
+            ),
         ]
 
     def __str__(self):
