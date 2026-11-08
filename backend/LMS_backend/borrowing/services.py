@@ -70,7 +70,10 @@ def borrow_book(user, book_id, due_date):
                     "No copies of this book are currently available."
                 )
 
-        # Check whether the user already has an active borrowing.
+
+    except IntegrityError:
+        # The database-level unique constraint protects against
+        # simultaneous duplicate borrowing requests.
         already_borrowed = BorrowTransaction.objects.filter(
             user=user,
             book_id=book_id,
