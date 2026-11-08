@@ -40,7 +40,8 @@ class BorrowTransaction(models.Model):
 
         constraints = [
             models.UniqueConstraint(
-                fields=["user", "book"]
+                fields=["user", "book"],
+                condition=models.Q(returned_at__isnull=True),
             ),
         ]
 
