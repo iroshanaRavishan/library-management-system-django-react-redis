@@ -76,7 +76,8 @@ def borrow_book(user, book_id, due_date):
                 book_id=book_id,
                 due_date=due_date,
             )
-=
+
+            return borrow_transaction
 
     except IntegrityError:
         # The database-level unique constraint protects against
