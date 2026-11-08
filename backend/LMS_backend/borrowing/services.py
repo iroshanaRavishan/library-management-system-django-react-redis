@@ -60,6 +60,7 @@ def borrow_book(user, book_id, due_date):
             # Decrease available copies only if at least one copy exists.
             updated_rows = Book.objects.filter(
                 id=book_id,
+                available_copies__gt=0,
             ).update(
                 available_copies=F("available_copies")
             )
