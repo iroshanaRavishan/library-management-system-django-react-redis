@@ -78,7 +78,10 @@ def borrow_book(user, book_id, due_date):
             )
 
             # Invalidate affected caches after successful commit.
-            transaction.on_commit()
+            transaction.on_commit(
+                lambda book_id=book_id:
+                    invalidate_after_borrowing(book_id)
+            )
 
             return borrow_transaction
 
