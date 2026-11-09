@@ -9,3 +9,17 @@ from borrowing.models import BorrowTransaction
 from borrowing.services import borrow_book, return_book
 from users.models import User
 
+
+class BorrowingServiceTests(TestCase):
+
+    def setUp(self):
+        # Create a normal library member.
+        self.user = User.objects.create_user(
+            username="testmember",
+            email="member@example.com",
+            password="TestPassword123!",
+            full_name="Test Member",
+            role=User.Role.MEMBER,
+        )
+
+
