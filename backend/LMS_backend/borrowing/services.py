@@ -77,6 +77,9 @@ def borrow_book(user, book_id, due_date):
                 due_date=due_date,
             )
 
+            # Invalidate affected caches after successful commit.
+            transaction.on_commit()
+
             return borrow_transaction
 
     except IntegrityError:
