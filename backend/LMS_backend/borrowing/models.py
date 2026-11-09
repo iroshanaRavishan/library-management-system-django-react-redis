@@ -42,6 +42,7 @@ class BorrowTransaction(models.Model):
             models.UniqueConstraint(
                 fields=["user", "book"],
                 condition=models.Q(returned_at__isnull=True),
+                name="unique_active_borrow_per_user_book",
             ),
         ]
 
