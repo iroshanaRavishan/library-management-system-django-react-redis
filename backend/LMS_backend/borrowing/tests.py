@@ -39,3 +39,4 @@ class BorrowingServiceTests(TestCase):
             available_copies=2,
         )
 
+        self.due_date = timezone.now() + timedelta(days=14)
