@@ -26,3 +26,16 @@ class BorrowingServiceTests(TestCase):
         self.author = Author.objects.create(name="Test Author")
         self.category = Category.objects.create(name="Test Category")
         self.publisher = Publisher.objects.create(name="Test Publisher")
+
+        # Create a book with two available copies.
+        self.book = Book.objects.create(
+            isbn="9780000000001",
+            title="Test Book",
+            author=self.author,
+            category=self.category,
+            publisher=self.publisher,
+            publication_year=2025,
+            total_copies=2,
+            available_copies=2,
+        )
+
