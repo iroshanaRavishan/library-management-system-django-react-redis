@@ -24,4 +24,5 @@ class BorrowingServiceTests(TestCase):
 
         # Create the related book records.
         self.author = Author.objects.create(name="Test Author")
-        
+        self.category = Category.objects.create(name="Test Category")
+        self.publisher = Publisher.objects.create(name="Test Publisher")
