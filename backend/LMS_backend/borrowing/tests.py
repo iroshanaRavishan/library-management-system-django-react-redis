@@ -49,3 +49,10 @@ class BorrowingServiceTests(TestCase):
                     book_id=self.book.id,
                     due_date=self.due_date,
                 )
+
+        self.book.refresh_from_db()
+
+        self.assertIsInstance(borrowing, BorrowTransaction)
+        self.assertEqual(borrowing.user, self.user)
+        self.assertEqual(borrowing.book, self.book)
+
