@@ -22,4 +22,6 @@ class BorrowingServiceTests(TestCase):
             role=User.Role.MEMBER,
         )
 
-
+        # Create the related book records.
+        self.author = Author.objects.create(name="Test Author")
+        
