@@ -40,3 +40,12 @@ class BorrowingServiceTests(TestCase):
         )
 
         self.due_date = timezone.now() + timedelta(days=14)
+
+    def test_borrow_available_book(self):
+        with patch("borrowing.services.invalidate_after_borrowing"):
+            with self.captureOnCommitCallbacks(execute=True):
+                borrowing = borrow_book(
+                    user=self.user,
+                    book_id=self.book.id,
+                    due_date=self.due_date,
+                )
