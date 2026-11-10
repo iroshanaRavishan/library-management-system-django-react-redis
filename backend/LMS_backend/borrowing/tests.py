@@ -55,4 +55,5 @@ class BorrowingServiceTests(TestCase):
         self.assertIsInstance(borrowing, BorrowTransaction)
         self.assertEqual(borrowing.user, self.user)
         self.assertEqual(borrowing.book, self.book)
-
+        self.assertEqual(self.book.available_copies, 1)
+        self.assertIsNone(borrowing.returned_at)
