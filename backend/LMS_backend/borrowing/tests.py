@@ -78,5 +78,9 @@ class BorrowingServiceTests(TestCase):
 
     def test_user_cannot_borrow_same_book_twice(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
-
+            with self.captureOnCommitCallbacks(execute=True):
+                borrow_book(
+                    user=self.user,
+                    
+                )
 
