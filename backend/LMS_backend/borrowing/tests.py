@@ -57,3 +57,9 @@ class BorrowingServiceTests(TestCase):
         self.assertEqual(borrowing.book, self.book)
         self.assertEqual(self.book.available_copies, 1)
         self.assertIsNone(borrowing.returned_at)
+
+    def test_cannot_borrow_when_no_copies_are_available(self):
+        self.book.available_copies = 0
+        self.book.save(update_fields=["available_copies"])
+
+
