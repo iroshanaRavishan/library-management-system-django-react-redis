@@ -66,4 +66,9 @@ class BorrowingServiceTests(TestCase):
             ValueError,
             "No copies of this book are currently available.",
         ):
+            borrow_book(
+                user=self.user,
+                book_id=self.book.id,
+                due_date=self.due_date,
+            )
 
