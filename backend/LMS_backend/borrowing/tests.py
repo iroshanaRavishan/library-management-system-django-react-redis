@@ -72,3 +72,6 @@ class BorrowingServiceTests(TestCase):
                 due_date=self.due_date,
             )
 
+        self.book.refresh_from_db()
+        self.assertEqual(self.book.available_copies, 0)
+        self.assertEqual(BorrowTransaction.objects.count(), 0)
