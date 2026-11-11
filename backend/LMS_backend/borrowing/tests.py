@@ -62,4 +62,8 @@ class BorrowingServiceTests(TestCase):
         self.book.available_copies = 0
         self.book.save(update_fields=["available_copies"])
 
+        with self.assertRaisesMessage(
+            ValueError,
+            "No copies of this book are currently available.",
+        ):
 
