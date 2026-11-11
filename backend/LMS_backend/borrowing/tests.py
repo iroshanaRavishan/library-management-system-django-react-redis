@@ -75,3 +75,8 @@ class BorrowingServiceTests(TestCase):
         self.book.refresh_from_db()
         self.assertEqual(self.book.available_copies, 0)
         self.assertEqual(BorrowTransaction.objects.count(), 0)
+
+    def test_user_cannot_borrow_same_book_twice(self):
+        with patch("borrowing.services.invalidate_after_borrowing"):
+
+
