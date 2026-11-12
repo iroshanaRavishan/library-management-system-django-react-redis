@@ -85,3 +85,7 @@ class BorrowingServiceTests(TestCase):
                     due_date=self.due_date,
                 )
 
+        with self.assertRaisesMessage(
+            ValueError,
+            "You have already borrowed this book.",
+        ):
