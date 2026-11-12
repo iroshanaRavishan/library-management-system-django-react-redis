@@ -94,3 +94,5 @@ class BorrowingServiceTests(TestCase):
                 due_date=self.due_date,
             )
 
+        self.assertEqual(BorrowTransaction.objects.count(), 1)
+
