@@ -91,6 +91,7 @@ class BorrowingServiceTests(TestCase):
         ):
             borrow_book(
                 user=self.user,
+                book_id=self.book.id,
                 due_date=self.due_date,
             )
 
