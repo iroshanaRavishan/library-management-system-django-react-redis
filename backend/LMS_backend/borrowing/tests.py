@@ -89,3 +89,8 @@ class BorrowingServiceTests(TestCase):
             ValueError,
             "You have already borrowed this book.",
         ):
+            borrow_book(
+                user=self.user,
+                due_date=self.due_date,
+            )
+
