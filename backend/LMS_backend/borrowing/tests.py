@@ -114,3 +114,7 @@ class BorrowingServiceTests(TestCase):
                     book_id=self.book.id,
                     due_date=self.due_date,
                 )
+
+        self.book.refresh_from_db()
+
+
