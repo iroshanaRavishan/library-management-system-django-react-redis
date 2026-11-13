@@ -110,5 +110,7 @@ class BorrowingServiceTests(TestCase):
                 return_book(first_borrowing.id)
 
                 second_borrowing = borrow_book(
+                   
                     book_id=self.book.id,
+                    due_date=self.due_date,
                 )
