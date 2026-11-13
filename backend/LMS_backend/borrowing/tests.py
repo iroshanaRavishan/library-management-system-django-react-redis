@@ -117,4 +117,6 @@ class BorrowingServiceTests(TestCase):
 
         self.book.refresh_from_db()
 
+        self.assertNotEqual(first_borrowing.id, second_borrowing.id)
+        self.assertEqual(self.book.available_copies, 1)
 
