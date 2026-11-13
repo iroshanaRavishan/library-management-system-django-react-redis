@@ -101,3 +101,6 @@ class BorrowingServiceTests(TestCase):
     def test_user_can_borrow_book_again_after_returning_it(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
             with self.captureOnCommitCallbacks(execute=True):
+                first_borrowing = borrow_book(
+                    user=self.user,
+                )
