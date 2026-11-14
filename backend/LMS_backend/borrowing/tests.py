@@ -100,7 +100,9 @@ class BorrowingServiceTests(TestCase):
     def test_return_borrowed_book(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
             with self.captureOnCommitCallbacks(execute=True):
-     
+                borrowing = borrow_book(
+                    user=self.user,
+                )
 
                
 
