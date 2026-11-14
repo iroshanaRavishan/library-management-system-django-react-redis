@@ -102,6 +102,8 @@ class BorrowingServiceTests(TestCase):
             with self.captureOnCommitCallbacks(execute=True):
                 borrowing = borrow_book(
                     user=self.user,
+                    book_id=self.book.id,
+                    due_date=self.due_date,
                 )
 
                
