@@ -128,6 +128,7 @@ class BorrowingServiceTests(TestCase):
             ValueError,
             "This book has already been returned.",
         ):
+            return_book(borrowing.id)
 
 
     def test_user_can_borrow_book_again_after_returning_it(self):
