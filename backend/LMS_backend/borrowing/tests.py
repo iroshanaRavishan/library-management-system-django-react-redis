@@ -113,6 +113,8 @@ class BorrowingServiceTests(TestCase):
         self.assertIsNotNone(returned_transaction.returned_at)
         self.assertEqual(self.book.available_copies, 2)
 
+    def test_cannot_return_same_transaction_twice(self):
+        
 
     def test_user_can_borrow_book_again_after_returning_it(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
