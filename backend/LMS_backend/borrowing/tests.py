@@ -131,6 +131,7 @@ class BorrowingServiceTests(TestCase):
             return_book(borrowing.id)
 
         self.book.refresh_from_db()
+        self.assertEqual(self.book.available_copies, 2)
 
     def test_user_can_borrow_book_again_after_returning_it(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
