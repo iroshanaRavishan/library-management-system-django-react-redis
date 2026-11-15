@@ -124,6 +124,11 @@ class BorrowingServiceTests(TestCase):
 
                 return_book(borrowing.id)
 
+        with self.assertRaisesMessage(
+            ValueError,
+            "This book has already been returned.",
+        ):
+
 
     def test_user_can_borrow_book_again_after_returning_it(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
