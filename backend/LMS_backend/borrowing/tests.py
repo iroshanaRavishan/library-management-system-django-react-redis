@@ -116,7 +116,9 @@ class BorrowingServiceTests(TestCase):
     def test_cannot_return_same_transaction_twice(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
             with self.captureOnCommitCallbacks(execute=True):
-              
+                borrowing = borrow_book(
+                    user=self.user,
+                )
 
     def test_user_can_borrow_book_again_after_returning_it(self):
         with patch("borrowing.services.invalidate_after_borrowing"):
