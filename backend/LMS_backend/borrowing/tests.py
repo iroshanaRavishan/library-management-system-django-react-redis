@@ -119,6 +119,7 @@ class BorrowingServiceTests(TestCase):
                 borrowing = borrow_book(
                     user=self.user,
                     book_id=self.book.id,
+                    due_date=self.due_date,
                 )
 
     def test_user_can_borrow_book_again_after_returning_it(self):
