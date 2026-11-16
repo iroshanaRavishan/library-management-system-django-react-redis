@@ -1,122 +1,157 @@
-from django.db import transaction
+from django.core.cache import cache
+from django.db import transaction, IntegrityError
 from django.utils import timezone
+
+from django.db.models import F
 
 from books.models import Book
 from borrowing.models import BorrowTransaction
 from books.cache import invalidate_borrowing_caches
+from dashboard.services import invalidate_dashboard_cache
+
+
+def invalidate_after_borrowing(book_id):
+    """
+    Invalidate caches affected by borrowing or returning a book.
+    """
+    invalidate_borrowing_caches(book_id)
+
+    # Invalidate the book detail cache.
+    cache.delete(f"book:{book_id}")
+
+    # Invalidate book search results.
+    # Requires a django-redis backend.
+    cache.delete_pattern("book_search:*")
+
+    # Invalidate popular books statistics.
+    cache.delete("popular_books")
+
+    # Invalidate dashboard statistics.
+    invalidate_dashboard_cache()
 
 
 def borrow_book(user, book_id, due_date):
     """
     Handles the complete business process of borrowing a book.
+    Uses conditional database updates to prevent negative availability.
     """
 
-    # Start a database transaction so all database changes
-    # succeed together or are rolled back together.
-    with transaction.atomic():
+    try:
+        with transaction.atomic():
 
-        # Get the book from the database.
-        book = Book.objects.get(id=book_id)
+            # Check whether the book exists.
+            book_exists = Book.objects.filter(id=book_id).exists()
 
-        # Check whether the book has any available copies.
-        if book.available_copies <= 0:
-            raise ValueError("No copies of this book are currently available.")
+            if not book_exists:
+                raise ValueError("Book not found.")
 
-        # Check whether this user already has an active borrowing
-        # transaction for the same book.
+            # Prevent duplicate active borrowing.
+            already_borrowed = BorrowTransaction.objects.filter(
+                user=user,
+                book_id=book_id,
+                returned_at__isnull=True,
+            ).exists()
+
+            if already_borrowed:
+                raise ValueError(
+                    "You have already borrowed this book."
+                )
+
+            # Decrease available copies only if at least one copy exists.
+            updated_rows = Book.objects.filter(
+                id=book_id,
+                available_copies__gt=0,
+            ).update(
+                available_copies=F("available_copies") - 1
+            )
+
+            if updated_rows == 0:
+                raise ValueError(
+                    "No copies of this book are currently available."
+                )
+
+            # Create the borrowing transaction.
+            borrow_transaction = BorrowTransaction.objects.create(
+                user=user,
+                book_id=book_id,
+                due_date=due_date,
+            )
+
+            # Invalidate affected caches after successful commit.
+            transaction.on_commit(
+                lambda book_id=book_id:
+                    invalidate_after_borrowing(book_id)
+            )
+
+            return borrow_transaction
+
+    except IntegrityError:
+        # The database-level unique constraint protects against
+        # simultaneous duplicate borrowing requests.
         already_borrowed = BorrowTransaction.objects.filter(
             user=user,
-            book=book,
-            returned_at__isnull=True
+            book_id=book_id,
+            returned_at__isnull=True,
         ).exists()
 
-        # Prevent the same user from borrowing the same book twice
-        # without returning the first copy.
         if already_borrowed:
-            raise ValueError("You have already borrowed this book.")
+            raise ValueError(
+                "You have already borrowed this book."
+            )
 
-        # Create the borrowing transaction.
-        borrow_transaction = BorrowTransaction.objects.create(
-            user=user,
-            book=book,
-            due_date=due_date
-        )
-
-        # Decrease the number of available copies by one.
-        book.available_copies -= 1
-
-        # Save the updated availability.
-        book.save(update_fields=["available_copies"])
-
-        # Invalidate caches related to borrowing.
-        invalidate_borrowing_caches(book.id)
-
-        # Invalidate caches because book availability has changed.
-        cache.delete(f"book:{book.id}")
-
-        # Search results may contain the old availability.
-        keys = cache.keys("book_search:*")
-        if keys:
-            cache.delete_many(keys)
-
-        # Dashboard statistics may also have changed.
-        cache.delete("library_dashboard")
-
-        # Popular books statistics may have changed.
-        cache.delete("popular_books")
-
-        # Return the newly created transaction.
-        return borrow_transaction
+        raise
 
 
 def return_book(transaction_id):
     """
     Handles the complete business process of returning a book.
+    Prevents the same transaction from being returned twice.
     """
 
-    # Start a database transaction.
     with transaction.atomic():
 
         # Find the borrowing transaction.
-        borrow_transaction = BorrowTransaction.objects.select_related(
-            "book"
-        ).get(id=transaction_id)
+        borrow_transaction = BorrowTransaction.objects.get(
+            id=transaction_id
+        )
 
-        # Make sure the book has not already been returned.
-        if borrow_transaction.returned_at is not None:
-            raise ValueError("This book has already been returned.")
+        book_id = borrow_transaction.book_id
 
-        # Record the return time.
-        borrow_transaction.returned_at = timezone.now()
+        # Update only if the transaction has not already been returned.
+        updated_rows = BorrowTransaction.objects.filter(
+            id=transaction_id,
+            returned_at__isnull=True,
+        ).update(
+            returned_at=timezone.now()
+        )
 
-        # Save the return time.
-        borrow_transaction.save(update_fields=["returned_at"])
+        if updated_rows == 0:
+            raise ValueError(
+                "This book has already been returned."
+            )
 
-        # Get the related book.
-        book = borrow_transaction.book
+        # Increase available copies only when below total copies.
+        updated_books = Book.objects.filter(
+            id=book_id,
+            available_copies__lt=F("total_copies"),
+        ).update(
+            available_copies=F("available_copies") + 1
+        )
 
-        # Increase the number of available copies by one.
-        book.available_copies += 1
+        if updated_books == 0:
+            raise ValueError(
+                "Book availability is inconsistent. "
+                "Please contact the librarian."
+            )
 
-        # Save the updated availability.
-        book.save(update_fields=["available_copies"])
+        # Invalidate affected caches after successful commit.
+        transaction.on_commit(
+            lambda book_id=book_id:
+                invalidate_after_borrowing(book_id)
+        )
 
-        # Invalidate caches related to borrowing.
-        invalidate_borrowing_caches(book.id)
+        # Refresh the object to include the updated return time.
+        borrow_transaction.refresh_from_db()
 
-        # Invalidate the book detail cache.
-        cache.delete(f"book:{book.id}")
-
-        # Invalidate book search caches.
-        keys = cache.keys("book_search:*")
-        if keys:
-            cache.delete_many(keys)
-
-        # Invalidate dashboard cache.
-        cache.delete("library_dashboard")
-
-        # Popular books statistics may have changed.
-        cache.delete("popular_books")
-
-        # Return the updated transaction.
         return borrow_transaction
+        
