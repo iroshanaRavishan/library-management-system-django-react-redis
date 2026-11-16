@@ -39,3 +39,16 @@ def invalidate_borrowing_caches(book_id):
 
     # Invalidate dashboard cache
     cache.delete("library_dashboard")
+    
+
+def invalidate_popular_books_cache():
+    """
+    Removes the cached popular books data.
+    """
+    cache.delete("popular_books")
+
+
+def invalidate_category_cache(category_id):
+    """
+    Removes cached books for a specific category.
+    """

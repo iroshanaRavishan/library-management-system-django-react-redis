@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (
+from books.views import (
     AuthorListView,
     AuthorDetailView,
     CategoryListView,
@@ -9,7 +9,9 @@ from .views import (
     PublisherDetailView,
     BookListView,
     BookDetailView,
-    BookSearchView
+    BookSearchView,
+    PopularBooksView,
+    CategoryBooksView,
 )
 
 
@@ -41,6 +43,12 @@ urlpatterns = [
         name="category-detail",
     ),
 
+    path(
+        "categories/<int:category_id>/books/",
+        CategoryBooksView.as_view(),
+        name="category-books",
+    ),
+
     # Publishers
     path(
         "publishers/",
@@ -65,6 +73,12 @@ urlpatterns = [
         "books/search/",
         BookSearchView.as_view(),
         name="book-search",
+    ),
+
+    path(
+        "books/popular/",
+        PopularBooksView.as_view(),
+        name="popular-books",
     ),
 
     path(
